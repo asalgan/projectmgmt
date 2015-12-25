@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :organizations
+  resources :brain_dumps
+  resources :brain_dump_categories
 
 end

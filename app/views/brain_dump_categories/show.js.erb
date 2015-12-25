@@ -1,0 +1,6 @@
+<% @brain_dump_categories.each do |item| %>
+  $("#right").prepend("<%= j render partial: 'organizations/brain_dump_category', locals: { category: item } %>");
+<% end %>
+
+$("#addBrainDumpCategory")[0].reset();
+$("#brain_dump_category_name").val('');

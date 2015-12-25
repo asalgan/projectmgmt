@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224225924) do
+ActiveRecord::Schema.define(version: 20151225205552) do
+
+  create_table "brain_dump_categories", force: true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.boolean  "done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brain_dump_categories", ["organization_id"], name: "index_brain_dump_categories_on_organization_id", using: :btree
+
+  create_table "brain_dumps", force: true do |t|
+    t.string   "word"
+    t.integer  "brain_dump_category_id"
+    t.integer  "organization_id"
+    t.boolean  "done",                   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brain_dumps", ["brain_dump_category_id"], name: "index_brain_dumps_on_brain_dump_category_id", using: :btree
+  add_index "brain_dumps", ["organization_id"], name: "index_brain_dumps_on_organization_id", using: :btree
 
   create_table "organization_members", force: true do |t|
     t.integer  "role"
@@ -29,7 +51,6 @@ ActiveRecord::Schema.define(version: 20151224225924) do
     t.integer  "org_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "brain_dump"
   end
 
   create_table "users", force: true do |t|

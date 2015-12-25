@@ -6,8 +6,10 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @brain_dump = @organization.brain_dump
+    @brain_dump = @organization.brain_dumps.reverse
+    @brain_dump_categories = @organization.brain_dump_categories
   end
+
 
   private
 

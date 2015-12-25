@@ -1,0 +1,6 @@
+<% @brain_dump.each do |item| %>
+  $("#left").prepend("<%= j render partial: 'organizations/brain_dump', locals: { word: item } %>");
+<% end %>
+
+$("#addToBrainDumpForm")[0].reset();
+$("#organization_brain_dump").val('');

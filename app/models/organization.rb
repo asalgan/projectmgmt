@@ -1,8 +1,9 @@
 class Organization < ActiveRecord::Base
-  serialize :brain_dump, Array
-
   has_many :users, through: :organization_members
   has_many :organization_members
+
+  has_many :brain_dumps
+  has_many :brain_dump_categories
 
   enum org_type: [:business, :nonprofit, :civic]
 
