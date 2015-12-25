@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1><%= @organization.name %></h1>
+
+  <ul class="col-md-6" id="left">
+    <% @brain_dump.each do |word| %>
+      <li><%= word %></li>
+    <% end %>
+  </ul>
+
+  <ul  class="col-md-6" id="right" style="height:300px;background-color:#a7a7a7;">
+
+  </ul>
+
+</div>
+
+<script>
+  var left = document.getElementById('left');
+  var right = document.getElementById('right');
+
+  dragula([left, right], {
+    copy: function (el, source) {
+      return source === left
+    },
+    accepts: function (el, target) {
+      return target !== left
+    },
+    revertOnSpill: true
+  });
+</script>

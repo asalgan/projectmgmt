@@ -1,0 +1,127 @@
+$red: #FF6666;
+$blue: #31b0d5;
+$green: #62b857;
+$purple: #7B77C9;
+$orange: #ED9121;
+$gray: rgba(0,0,0,0.7);
+$white: #fff;
+
+
+html {
+  height: 100%;
+}
+
+body {
+  z-index: 1;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -moz-box-sizing: border-box; }
+
+*:before,
+*:after {
+  -moz-box-sizing: border-box; }
+
+/* clear bootstrap style */
+a.thumbnail, a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
+  border: none;
+}
+
+a:focus, textarea:focus, button:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
+
+/*remove bootstrap table border*/
+.table > tbody > tr > td {
+  border-top: none;
+}
+
+ul, li {
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  list-style-type: none;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+%transition {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+// For background % cover
+@mixin background-size($percent) {
+  background-size: $percent;
+  -o-background-size:$percent auto;
+  -webkit-background-size:$percent auto;
+  -moz-background-size:$percent auto;
+  background-size:$percent auto;
+}
+
+%background-size-cover {
+  background-size: cover;
+  -o-background-size:cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+}
+
+@mixin button($color) {
+  border: none;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0px;
+  font-family: 'Roboto';
+  background: $color;
+  @extend %transition;
+
+  &:hover {
+    text-decoration: none;
+    background-color: darken($color, 5%);
+    cursor: pointer;
+  }
+}
+
+.blue-btn   { @include button($blue);  }
+.green-btn  { @include button($green); }
+.red-btn    { @include button($red);   }
+.purple-btn { @include button($purple);}
+.white-btn  { @include button($white); }
+
+.blue-txt   { color: $blue }
+.green-txt  { color: $green }
+.red-txt    { color: $red }
+.purple-txt { color: $purple }
+.gray-txt   { color: $gray }
+
+.blue-txt-hover   { color: $blue; @extend %transition; &:hover { color: darken($blue, 5%); cursor: pointer; } }
+.green-txt-hover  { color: $green; @extend %transition; &:hover { color: darken($green, 5%); cursor: pointer; } }
+.red-txt-hover    { color: $red; @extend %transition; &:hover { color: darken($red, 5%); cursor: pointer; } }
+.purple-txt-hover { color: $purple; @extend %transition; &:hover { color: darken($purple, 5%); cursor: pointer; } }
+
+
+@mixin text-styling($color, $font-size, $font-weight) {
+  font-family: "Roboto";
+  font-weight: $font-weight;
+  text-align: center;
+  color: $color;
+  font-size: $font-size;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+}

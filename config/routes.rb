@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+
+  authenticated do
+    root 'organizations#show', as: :authenticated
+  end
+
+  root 'visitors#index'
+
   devise_for :users
+
+  resources :organizations
+
 end
