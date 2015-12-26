@@ -6,7 +6,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @brain_dump = @organization.brain_dumps.reverse
+    @brain_dump = @organization.brain_dumps.where(brain_dump_category_id: nil).reverse
     @brain_dump_categories = @organization.brain_dump_categories
   end
 

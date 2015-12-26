@@ -5,14 +5,14 @@
   <div class="col-md-6">
 
     <%= bootstrap_form_for BrainDump.new, html: { id: "addToBrainDumpForm", method: :post }, remote: true do |f| %>
-      <%= f.text_area :word, placeholder: "Add comma-separated words to your brain dump"  %>
+      <%= f.text_area :word, placeholder: "Add comma-separated words to your brain dump", required: true  %>
       <%= f.hidden_field :organization_id, value: @organization.id %>
       <%= f.submit 'Add' %>
     <% end %>
 
-    <ul class="col-md-12 no-pad" id="left">
+    <ul class="col-md-12 no-pad" id="left" data-id="0">
       <% @brain_dump.each do |word| %>
-        <%= render 'brain_dump', word: word %>
+        <li data-id="<%= word.id %>"><%= word.word.humanize %></li>
       <% end %>
     </ul>
 
@@ -21,16 +21,25 @@
   <div class="col-md-6">
 
     <%= bootstrap_form_for BrainDumpCategory.new, html: { id: "addBrainDumpCategory", method: :post }, remote: true do |f| %>
-      <%= f.text_area :name, placeholder: "Add categories for your brain-dump words"  %>
+      <%= f.text_area :name, placeholder: "Add categories for your brain-dump words", required: true %>
       <%= f.hidden_field :organization_id, value: @organization.id %>
       <%= f.submit 'Add' %>
     <% end %>
 
-    <ul class="col-md-12 no-pad" id="right" style="height:300px;background-color:#a7a7a7;">
-    <% @brain_dump_categories.each do |category| %>
-        <%= render 'brain_dump_category', category: category %>
+    <div class="col-md-12 no-pad" id="right" style="height:300px;overflow-y:scroll;">
+      <% @brain_dump_categories.each do |category| %>
+        <div class="brain-dump-category">
+          <b><%= category.name.titleize %></b>
+          <ul class="brain-dump-category-list" data-id="<%= category.id %>">
+            <% if category.brain_dumps.present? %>
+              <% category.brain_dumps.each do |word| %>
+                <li data-id="<%= word.id %>"><%= word.word.humanize %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
+    </div>
 
   </div>
 
@@ -40,25 +49,7 @@
 
   $(document).ready(function(){
     $("#organization_brain_dump").val('');
-
-    var left = document.getElementById('left');
-    var containers = $(".brain-dump-category-list").toArray();
-
-    containers.push(left)
-
-    dragula(containers)
-    .on('move', function (el, source, handle, sibling) {
-      if($(el).hasClass("brain-dump-category")) {
-        return false } else { return true }
-    }).on('drop', function (el, target, source, sibling) {
-      console.log($(el).closest('.brain-dump-category-list').attr('data-id'));
-      return true;
-    });
-
-
-
+    brainDump();
   });
-
-
 
 </script>

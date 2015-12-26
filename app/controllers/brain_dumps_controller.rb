@@ -29,6 +29,20 @@ class BrainDumpsController < ApplicationController
 
   end
 
+  def update
+
+    if params[:category_id].to_i > 0
+      @brain_dump_category = BrainDumpCategory.find(params[:category_id])
+      @brain_dump = BrainDump.find(params[:id])
+      @brain_dump.update_attributes(brain_dump_category_id: @brain_dump_category.id)
+    else
+      @brain_dump = BrainDump.find(params[:id])
+      @brain_dump.update_attributes(brain_dump_category_id: nil)
+    end
+
+    render nothing: true
+  end
+
   private
 
     def brain_dump_params
