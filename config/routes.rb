@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :organizations
+  resources :organizations do
+    member do
+      get '/map' => 'organizations#map'
+    end
+  end
+
   resources :brain_dumps
   resources :brain_dump_categories
 

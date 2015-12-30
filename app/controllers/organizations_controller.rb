@@ -1,13 +1,14 @@
 class OrganizationsController < ApplicationController
   before_filter :can_access, only: [:show]
+  before_filter :set_data, only: [:show, :map]
 
   def index
   end
 
   def show
-    @organization = Organization.find(params[:id])
-    @brain_dump = @organization.brain_dumps.where(brain_dump_category_id: nil).reverse
-    @brain_dump_categories = @organization.brain_dump_categories
+  end
+
+  def map
   end
 
 
@@ -19,6 +20,12 @@ class OrganizationsController < ApplicationController
       unless @organization.member?(current_user)
         redirect_to organizations_index_path
       end
+    end
+
+    def set_data
+      @organization = Organization.find(params[:id])
+      @brain_dump = @organization.brain_dumps.where(brain_dump_category_id: nil).reverse
+      @brain_dump_categories = @organization.brain_dump_categories
     end
 
 

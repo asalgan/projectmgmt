@@ -15,7 +15,6 @@ development:
   database: projectmgmt_development
   pool: 5
   username: root
-  password: cocomonkey981
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +27,6 @@ test:
   database: projectmgmt_test
   pool: 5
   username: root
-  password: cocomonkey981
   host: localhost
 
 production:
