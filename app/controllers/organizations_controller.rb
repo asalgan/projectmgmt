@@ -25,7 +25,7 @@ class OrganizationsController < ApplicationController
     def set_data
       @organization = Organization.find(params[:id])
       @brain_dump = @organization.brain_dumps.where(brain_dump_category_id: nil).reverse
-      @brain_dump_categories = @organization.brain_dump_categories
+      @brain_dump_categories = @organization.brain_dump_categories.includes(:brain_dumps => [:brain_dump_notes])
     end
 
 

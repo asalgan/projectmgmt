@@ -23,6 +23,9 @@ gem 'bootstrap_form'
 # drag and drop
 gem 'dragula-rails'
 
+# Format content
+gem 'auto_html', '~> 1.6.4'
+
 group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'

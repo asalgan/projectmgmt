@@ -1,0 +1,3 @@
+$(".content[data-brain-dump-id='<%= @note.brain_dump_id %>'").prepend("<%= j render partial: 'note', locals: { note: @note } %>");
+$("#new_brain_dump_note")[0].reset();
+$("textarea").val('');

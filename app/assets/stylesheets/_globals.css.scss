@@ -120,7 +120,7 @@ p {
 
 
 @mixin text-styling($color, $font-size, $font-weight) {
-  font-family: "Roboto";
+  font-family: 'Open Sans', sans-serif;
   font-weight: $font-weight;
   text-align: center;
   color: $color;

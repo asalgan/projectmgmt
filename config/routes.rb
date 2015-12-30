@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+
+  devise_for :users
+
   authenticated do
     root 'organizations#show', as: :authenticated
   end
 
   root 'visitors#index'
-
-  devise_for :users
 
   resources :organizations do
     member do
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
 
   resources :brain_dumps
   resources :brain_dump_categories
+  resources :brain_dump_notes
 
 end

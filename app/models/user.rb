@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :organization_member
+  has_many :brain_dump_notes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
