@@ -32,7 +32,7 @@
             <ul class="brain-dump-category-list" data-category-id="<%= category.id %>">
               <% category.brain_dumps.each do |word| %>
 
-                <li class="ac-custom-list-item" data-id="<%= word.id %>"><input id="<%= word.id %>" name="<%= word.id %>" type="checkbox"><label for="<%= word.id %>"><%= word.word.humanize %></label>
+                <li class="ac-custom-list-item" data-id="<%= word.id %>" data-done="<%= word.done? %>"><input id="<%= word.id %>" name="<%= word.id %>" type="checkbox"><label for="<%= word.id %>"><%= word.word.humanize %></label>
 
                   <a class="expander" href="#">Expand</a>
 
@@ -86,6 +86,14 @@
     });
 
     createCheckboxes();
+
+
+    $(function() {
+      $.each($("li[data-done='true']"), function() {
+
+      });
+    });
+
 
   });
 </script>

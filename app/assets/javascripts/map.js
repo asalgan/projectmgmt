@@ -1,3 +1,26 @@
+$(document).ready(function() {
+  $(".submit-note-button").off('click').on('click', function(e){
+    $this = $(this);
+    e.preventDefault();
+
+    var postData = $($this).closest('form').serialize();
+
+    $.ajax({
+      url: window.location.origin + "/brain_dump_notes" ,
+      type: "POST",
+      data: postData,
+      format: 'js',
+      success:function(data, textStatus, jqXHR) {
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+      }
+    });
+  });
+});
+
+
+
+
 function createCheckboxes() {
   if( document.createElement('svg').getAttributeNS ) {
 
@@ -49,8 +72,22 @@ function createCheckboxes() {
       el.addEventListener( 'change', function() {
         if( el.checked ) {
           var refChild = $(el.parentNode).find('a');
-          $(svg).insertBefore( refChild )
+          $(svg).insertBefore( refChild );
           draw( el, type );
+
+          var brainDumpId = $(el.parentNode).attr('data-id');
+
+          $.ajax({
+            url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
+            type: 'PUT',
+            format: 'json',
+            success:function(data, textStatus, jqXHR) {
+              $(el.parentNode).attr('data-done', 'true');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+            }
+          });
+
         }
         else {
           reset( el );

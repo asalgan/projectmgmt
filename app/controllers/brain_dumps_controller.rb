@@ -43,6 +43,13 @@ class BrainDumpsController < ApplicationController
     render nothing: true
   end
 
+  def update_completion
+    @brain_dump = BrainDump.find(params[:id])
+    is_done = (@brain_dump.done = !@brain_dump.done)
+    @brain_dump.update(done: is_done)
+    render nothing: true
+  end
+
   private
 
     def brain_dump_params

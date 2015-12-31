@@ -10,14 +10,18 @@ class BrainDumpNotesController < ApplicationController
     # @note = BrainDumpNote.new
   end
 
+  def update
+  end
+
   def create
     @note = BrainDumpNote.new(brain_dump_note_params)
 
     respond_to do |format|
       if @note.save
+        # format.html { redirect_to map_organization_path(@note.brain_dump.organization) }
         format.js { render action: 'show', locals: { note: @note } }
       else
-        format.js { render json: @note.errors, status: :unprocessable_entity }
+        format.html { redirect_to map_organization_path(@note.brain_dump.organization) }
       end
     end
   end

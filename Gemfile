@@ -26,6 +26,12 @@ gem 'dragula-rails'
 # Format content
 gem 'auto_html', '~> 1.6.4'
 
+# Detects HTML5/CSS3 elements for better cross-browser support
+gem 'modernizr-rails'
+
+# Adds nice alerts
+gem 'sweetalert2'
+
 group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'

@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
+  put '/brain_dumps/:id/update_completion' => 'brain_dumps#update_completion'
   resources :brain_dumps
+
   resources :brain_dump_categories
+
   resources :brain_dump_notes
 
 end

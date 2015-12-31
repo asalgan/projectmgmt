@@ -17,3 +17,29 @@
 //= require dragula
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+
+  // Prevent double-click action on buttons
+  $('button, a').dblclick(function(e){
+    e.preventDefault();
+    return false;
+  });
+
+
+  // IE fix for window.location.origin
+  $(function(){
+    if (!window.location.origin) {
+      window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+    }
+  });
+
+
+  // Ajax pagination, doesn't fire on networks
+  $(function(){
+    if (window.location.href.indexOf("networks") === -1) {
+      $('.pagination a').attr('data-remote', 'true')
+    }
+  });
+
+});
