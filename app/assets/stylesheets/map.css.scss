@@ -149,6 +149,16 @@
   transition: opacity 0.3s;
 }
 
+.ac-custom label.special {
+  color: #B7B7B7;
+  text-decoration: line-through;
+}
+
+.ac-custom label.special::before {
+  background-image: url(asset-path('green_checkmark.png'));
+  background-position: right 17px bottom -1px;
+}
+
 .ac-radio label::before {
   border-radius: 50%;
 }

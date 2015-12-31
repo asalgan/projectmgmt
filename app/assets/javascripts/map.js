@@ -70,27 +70,61 @@ function createCheckboxes() {
       var svg = createSVGEl( svgDef );
 
       el.addEventListener( 'change', function() {
-        if( el.checked ) {
-          var refChild = $(el.parentNode).find('a');
-          $(svg).insertBefore( refChild );
-          draw( el, type );
 
-          var brainDumpId = $(el.parentNode).attr('data-id');
+        var label = $(el.parentNode).find('label');
+        var brainDumpId = $(el.parentNode).attr('data-id');
+
+        if( $(label).hasClass('special') ) {
+
+          el.checked = true;
+
+          $(label).toggleClass('special').css({
+                                    'color':'rgba(0,0,0,0.7)',
+                                    'text-decoration':'none'
+                                    });
 
           $.ajax({
             url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
             type: 'PUT',
             format: 'json',
             success:function(data, textStatus, jqXHR) {
-              $(el.parentNode).attr('data-done', 'true');
+              $(el.parentNode).attr('data-done', 'false');
             },
             error: function(jqXHR, textStatus, errorThrown) {
             }
           });
 
-        }
-        else {
-          reset( el );
+        } else {
+
+          if( el.checked ) {
+            var refChild = $(el.parentNode).find('a');
+            $(svg).insertBefore( refChild );
+            draw( el, type );
+            $(label).css({
+                        'color':'#B7B7B7',
+                        'text-decoration':'line-through'
+                         });
+
+            $.ajax({
+              url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
+              type: 'PUT',
+              format: 'json',
+              success:function(data, textStatus, jqXHR) {
+                $(el.parentNode).attr('data-done', 'true');
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+              }
+            });
+
+          }
+          else {
+            reset( el );
+            el.checked = false;
+            $(label).css({
+                        'color':'rgba(0,0,0,0.7)',
+                        'text-decoration':'none'
+                        });
+          }
         }
       } );
     }

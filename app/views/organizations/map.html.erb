@@ -90,7 +90,7 @@
 
     $(function() {
       $.each($("li[data-done='true']"), function() {
-
+        $(this).find('label').addClass('special');
       });
     });
 
