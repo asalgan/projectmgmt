@@ -52,6 +52,11 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+
+  # Allows Paperclip gem to use ImageMagick
+  Paperclip.options[:image_magick_path] = "/usr/local/bin"
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

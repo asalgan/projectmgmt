@@ -77,8 +77,24 @@
 }
 
 .brain-dump-category-list {
+
    .content {
     display:none;
+
+    .actions-bar {
+      background-color: $muted-blue;
+      padding: 6px;
+
+      p {
+        @include text-styling($gray, 12px, bold);
+        display: inline-block;
+      }
+
+      a {
+        padding: 0px 5px;
+        @include text-styling($white, 12px, 600);
+      }
+    }
   }
 }
 

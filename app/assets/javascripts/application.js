@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require sweetalert2
 //= require dragula
+//= require dropzone
 //= require bootstrap-sprockets
 //= require_tree .
 

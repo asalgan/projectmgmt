@@ -17,6 +17,9 @@ gem 'mysql2', '~> 0.3.18'
 # Adds nice alerts
 gem 'sweetalert2'
 
+# File upload
+gem 'paperclip', '~> 4.2'
+
 # Easy bootstrap forms
 gem 'bootstrap_form'
 
@@ -29,8 +32,11 @@ gem 'auto_html', '~> 1.6.4'
 # Detects HTML5/CSS3 elements for better cross-browser support
 gem 'modernizr-rails'
 
-# Adds nice alerts
-gem 'sweetalert2'
+# File dropzone
+gem 'dropzonejs-rails'
+
+# File storage
+gem 'aws-sdk', '>= 2.0.0'
 
 group :development do
   gem 'hub', :require=>nil

@@ -52,7 +52,15 @@
 
                     <% end %>
 
-                    <%= render 'brain_dump_notes/form', word: word %>
+                    <div class="actions-bar">
+                      <p><b>Add a new:</b></p>
+                      <a href="" class="blue-btn blue-btn-hover">Note</a>
+                      <a href="" class="blue-btn blue-btn-hover">File</a>
+                      <a href="" class="blue-btn blue-btn-hover">Link</a>
+                    </div>
+
+                    <%= render 'brain_dump_notes/note_form', word: word %>
+                    <%= render 'brain_dump_notes/file_form', word: word %>
 
                   </div>
 
