@@ -90,7 +90,7 @@ p {
   text-decoration: none;
   text-align: center;
   border-radius: 0px;
-  font-family: 'Roboto';
+  font-family: 'Open Sans', sans-serif;
   background: $color;
   @extend %transition;
 
@@ -128,4 +128,12 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.6px;
   text-decoration: none;
+}
+
+
+@mixin user-img($diameter, $border-radius, $display) {
+  height: $diameter;
+  width: $diameter;
+  border-radius: $border-radius;
+  display: $display;
 }

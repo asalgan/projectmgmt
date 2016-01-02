@@ -1,0 +1,28 @@
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+  <h3>Members</h3>
+  <% @members.each do |member| %>
+    <%#= member.name %>
+    <%= image_tag 'default_avatar.png', class: "user-img"  %>
+  <% end %>
+</nav>
+
+
+<div class="main">
+  <section>
+    <button id="showRight">Show/Hide Right Slide Menu</button>
+  </section>
+</div>
+
+
+<script>
+
+  var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+      showRight = document.getElementById( 'showRight' ),
+      body = document.body;
+
+  showRight.onclick = function() {
+    classie.toggle( this, 'active' );
+    classie.toggle( menuRight, 'cbp-spmenu-open' );
+  };
+
+</script>

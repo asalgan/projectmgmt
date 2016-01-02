@@ -19,3 +19,16 @@ function brainDump() {
     });
   });
 }
+
+function progressBar(id, brain_dumps_total, brain_dumps_done) {
+  $(document).ready(function(){
+    $('#jqmeter-container_'+id).jQMeter({
+      goal: brain_dumps_total,
+      raised: brain_dumps_done,
+      meterOriengation:'horizontal',
+      height: '10px;',
+      bgColor: '#444',
+      barColor: '#bfd255'
+    });
+  });
+}
