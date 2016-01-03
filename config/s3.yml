@@ -1,0 +1,19 @@
+default: &default
+  access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+
+development:
+  # <<: *default
+  bucket: projectmgmt_dev
+
+test:
+  # <<: *default
+  bucket: projectmgmt_test
+
+production:
+  # <<: *default
+  bucket: projectmgmt_prod
+
+staging:
+  # <<: *default
+  bucket: projectmgmt_staging

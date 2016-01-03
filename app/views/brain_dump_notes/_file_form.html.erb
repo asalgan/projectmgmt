@@ -1,7 +1,7 @@
 <%= form_for(BrainDumpNote.new, remote: true, html: { role: :form, multipart: true, class: "dropzone", id: "new_brain_dump_file_#{word.id}" }) do |f| %>
 
   <div class="fallback">
-    <%= f.file_field :image %>
+    <%= f.file_field :upload %>
     <%= f.hidden_field :brain_dump_id, value: word.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -23,7 +23,7 @@
       maxFilesize: 2,
       // changed the passed param to one accepted by
       // our rails app
-      paramName: "upload[image]",
+      paramName: "brain_dump_note[upload]",
       // show remove links on each image upload
       addRemoveLinks: true
     });

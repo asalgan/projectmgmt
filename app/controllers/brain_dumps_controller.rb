@@ -53,7 +53,7 @@ class BrainDumpsController < ApplicationController
   private
 
     def brain_dump_params
-      params.require(:brain_dump).permit(:word, :organization_id, :done, :brain_dump_category_id, :image, :file)
+      params.require(:brain_dump).permit(:word, :organization_id, :done, :brain_dump_category_id)
     end
 
 

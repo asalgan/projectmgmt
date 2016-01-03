@@ -1,9 +1,9 @@
 <%= bootstrap_form_for(BrainDumpNote.new, remote: true, html: { role: :form, id: "new_brain_dump_note_#{word.id}" }) do |f| %>
 
-  <%= f.text_area :body, hide_label: true, class: 'post-body-input', placeholder: "Leave your comment, you can also paste a YouTube, Vimeo or SoundCloud link", :required => true %>
-
   <%= f.hidden_field :brain_dump_id, value: word.id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <%= f.text_area :body, hide_label: true, class: 'post-body-input', placeholder: "Leave your comment, you can also paste a YouTube, Vimeo or SoundCloud link", :required => true %>
 
   <%= f.submit 'Submit', class: "submit-note-button green-btn" %>
 

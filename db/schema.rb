@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102054426) do
+ActiveRecord::Schema.define(version: 20160103004617) do
 
   create_table "brain_dump_categories", force: true do |t|
     t.string   "name"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 20160102054426) do
     t.text     "body_html"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
   end
 
   add_index "brain_dump_notes", ["brain_dump_id"], name: "index_brain_dump_notes_on_brain_dump_id", using: :btree
@@ -42,10 +46,6 @@ ActiveRecord::Schema.define(version: 20160102054426) do
     t.boolean  "done",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"

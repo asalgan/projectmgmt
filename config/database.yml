@@ -36,5 +36,4 @@ production:
   database: projectmgmt_production
   pool: 5
   username: root
-  password: cocomonkey981
   host: localhost
