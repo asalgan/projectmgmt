@@ -4,16 +4,16 @@ default: &default
 
 development:
   # <<: *default
-  bucket: projectmgmt_dev
+  bucket: projectmgmt/projectmgmt_dev
 
 test:
   # <<: *default
-  bucket: projectmgmt_test
+  bucket: projectmgmt/projectmgmt_test
 
 production:
   # <<: *default
-  bucket: projectmgmt_prod
+  bucket: projectmgmt/projectmgmt_prod
 
 staging:
   # <<: *default
-  bucket: projectmgmt_staging
+  bucket: projectmgmt/projectmgmt_staging

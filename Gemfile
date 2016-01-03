@@ -18,7 +18,7 @@ gem 'mysql2', '~> 0.3.18'
 gem 'sweetalert2'
 
 # File upload
-gem 'paperclip', '~> 4.2'
+gem 'paperclip', '~> 3.5'
 
 # Easy bootstrap forms
 gem 'bootstrap_form'
@@ -36,7 +36,7 @@ gem 'modernizr-rails'
 gem 'dropzonejs-rails'
 
 # File storage
-gem 'aws-sdk', '>= 2.0.0'
+gem 'aws-sdk', '< 2.0.0'
 
 group :development do
   gem 'hub', :require=>nil

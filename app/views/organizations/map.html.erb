@@ -54,13 +54,13 @@
 
                     <div class="actions-bar">
                       <p><b>Add a new:</b></p>
-                      <a href="" class="blue-btn blue-btn-hover">Note</a>
-                      <a href="" class="blue-btn blue-btn-hover">File</a>
-                      <a href="" class="blue-btn blue-btn-hover">Link</a>
+                      <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
+                      <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
+                      <!-- <a href="#" class="blue-btn blue-btn-hover show-link-form">Link</a> -->
                     </div>
 
-                    <%= render 'brain_dump_notes/note_form', word: word %>
-                    <%= render 'brain_dump_notes/file_form', word: word %>
+                    <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: word %></div>
+                    <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: word %></div>
 
                   </div>
 
@@ -104,6 +104,26 @@
       $.each($("li[data-done='true']"), function() {
         $(this).find('label').addClass('special');
       });
+    });
+
+    $(".show-note-form").off('click').on('click', function(e) {
+      e.preventDefault();
+      var $this = $(this),
+          NoteForm = $this.parents(".content").find("#NoteForm");
+          FileForm = $this.parents(".content").find("#FileForm");
+
+      $(NoteForm).fadeToggle(400).toggleClass('hidden');
+      $(FileForm).addClass('hidden');
+    });
+
+    $(".show-file-form").off('click').on('click', function(e) {
+      e.preventDefault();
+      var $this = $(this),
+          NoteForm = $this.parents(".content").find("#NoteForm");
+          FileForm = $this.parents(".content").find("#FileForm");
+
+      $(FileForm).fadeToggle(400).toggleClass('hidden');
+      $(NoteForm).addClass('hidden');
     });
 
 
