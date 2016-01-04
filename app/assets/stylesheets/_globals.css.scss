@@ -102,11 +102,11 @@ p {
   }
 }
 
-.blue-btn   { @include button($blue);  }
-.green-btn  { @include button($green); }
-.red-btn    { @include button($red);   }
-.purple-btn { @include button($purple);}
-.white-btn  { @include button($white); }
+.blue-btn   { @include button($blue); padding: 3px 10px; }
+.green-btn  { @include button($green); padding: 3px 10px; }
+.red-btn    { @include button($red);  padding: 3px 10px; }
+.purple-btn { @include button($purple); padding: 3px 10px; }
+.white-btn  { @include button($white); padding: 3px 10px; }
 
 .blue-txt   { color: $blue }
 .green-txt  { color: $green }

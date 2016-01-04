@@ -42,16 +42,6 @@
 
                   <div class="content" data-brain-dump-id="<%= word.id %>">
 
-                    <% if word.brain_dump_notes.present? %>
-
-                      <ul>
-                        <% word.brain_dump_notes.order('created_at DESC').each do |note| %>
-                          <li><%= note.body_html %></li>
-                        <% end %>
-                      </ul>
-
-                    <% end %>
-
                     <div class="actions-bar">
                       <p><b>Add a new:</b></p>
                       <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
@@ -61,6 +51,16 @@
 
                     <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: word %></div>
                     <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: word %></div>
+
+                    <ul id="brainDumpNotesList">
+                      <% if word.brain_dump_notes.present? %>
+
+                        <% word.brain_dump_notes.order('created_at DESC').each do |note| %>
+                          <li><%#= image_path note.user.user_image class: "note-user-img" %><%= image_tag 'default_avatar.png', class: "note-user-img" %><%= note.body_html %></li>
+                        <% end %>
+
+                      <% end %>
+                    </ul>
 
                   </div>
 
