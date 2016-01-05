@@ -1,1 +1,8 @@
-<li><%#= image_path note.user.user_image class: "note-user-img" %><%= image_tag 'default_avatar.png', class: "note-user-img" %><%= @note.body_html %></li>
+<li class="col-md-12 no-pad">
+  <%#= image_path note.user.user_image class: "note-user-img" %>
+  <div class="col-md-1 no-pad"><%= image_tag 'default_avatar.png', class: "note-user-img" %></div>
+  <div class="col-md-11 no-pad" style="padding-left:10px;">
+    <b><%= note.user.name %>:</b><br>
+    <%= note.body_html %>
+  </div>
+</li>

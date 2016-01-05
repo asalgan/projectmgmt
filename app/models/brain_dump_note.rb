@@ -18,7 +18,9 @@ class BrainDumpNote < ActiveRecord::Base
   paperclip_file_opts = { styles: { small: "x200>", medium: "x300>", large: "x400>" },
   # paperclip_file_opts = { styles: lambda { |a| a.instance.check_file_type },
                           :storage => :s3,
-                          :s3_credentials => YAML.load_file(Rails.root + 'config/s3.yml')
+                          :s3_credentials => YAML.load_file(Rails.root + 'config/s3.yml'),
+                          :path => "uploads/:id/:style/:filename",
+                          :url => "/uploads/:id/:style/:filename"
                         }
 
   case Rails.env

@@ -33,14 +33,14 @@
 
           <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
 
-            <ul class="brain-dump-category-list" data-category-id="<%= category.id %>">
+            <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%= category.id %>">
               <% category.brain_dumps.each do |word| %>
 
-                <li class="ac-custom-list-item" data-id="<%= word.id %>" data-done="<%= word.done? %>"><input id="<%= word.id %>" name="<%= word.id %>" type="checkbox"><label for="<%= word.id %>"><%= word.word.humanize %></label>
+                <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%= word.id %>" data-done="<%= word.done? %>"><input id="<%= word.id %>" name="<%= word.id %>" type="checkbox"><label for="<%= word.id %>"><%= word.word.humanize %></label>
 
                   <a class="expander" href="#">Expand</a>
 
-                  <div class="content" data-brain-dump-id="<%= word.id %>">
+                  <div class="content col-md-12 no-pad" data-brain-dump-id="<%= word.id %>">
 
                     <div class="actions-bar">
                       <p><b>Add a new:</b></p>
@@ -52,11 +52,11 @@
                     <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: word %></div>
                     <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: word %></div>
 
-                    <ul id="brainDumpNotesList">
+                    <ul id="brainDumpNotesList" class="col-md-12 no-pad">
                       <% if word.brain_dump_notes.present? %>
 
                         <% word.brain_dump_notes.order('created_at DESC').each do |note| %>
-                          <li><%#= image_path note.user.user_image class: "note-user-img" %><%= image_tag 'default_avatar.png', class: "note-user-img" %><%= note.body_html %></li>
+                          <%= render 'brain_dump_notes/note', note: note %>
                         <% end %>
 
                       <% end %>

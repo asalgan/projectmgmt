@@ -14,20 +14,24 @@ class BrainDumpNotesController < ApplicationController
   end
 
   def create
-    @note = BrainDumpNote.create(brain_dump_note_params)
-
-    #   respond_to do |format|
-    #     if @note.save!
-    #       format.html { redirect_to map_organization_path(@note.brain_dump.organization) }
-    #     else
-    #       format.html { redirect_to map_organization_path(@note.brain_dump.organization) }
-    #     end
-    #   end
+    @note = BrainDumpNote.new(brain_dump_note_params)
 
     if params[:brain_dump_note][:upload].present?
-      render 'file.js', formats: [:js]
+      if @note.save!
+        respond_to do |format|
+          format.html
+          format.js { render 'show', content_type: 'text/javascript' }
+          format.json { render 'show', content_type: 'application/json' }
+          # format.js { render layout: false, content_type: 'text/javascript' }
+          # render 'file.js', formats: [:js]
+        end
+      end
     else
-      render 'show.js', formats: [:html]
+      if @note.save!
+        respond_to do |format|
+          format.js { render 'show', content_type: 'text/javascript' }
+        end
+      end
     end
 
   end

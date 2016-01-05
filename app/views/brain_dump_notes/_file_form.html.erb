@@ -8,6 +8,8 @@
 
 <% end %>
 
+<div class="dropzone-previews" id="preview_<%= word.id %>"></div>
+
 
 <script>
 
@@ -16,14 +18,23 @@
     Dropzone.autoDiscover = false;
 
     // grap our upload form by its id
-    $("#new_brain_dump_file_<%= word.id %>").dropzone({
+    var myDropzone = $("#new_brain_dump_file_<%= word.id %>").dropzone({
       // restrict image size to a maximum 1MB
       maxFilesize: 10,
       // changed the passed param to one accepted by
       // our rails app
       paramName: "brain_dump_note[upload]",
       // show remove links on each image upload
-      addRemoveLinks: true
+      addRemoveLinks: true,
+      previewsContainer: "#preview_<%= word.id %>",
+      clickable: true,
+      createImageThumbnails: true,
+      dictDefaultMessage: "To attach files you can drag & drop them here or click to select files from your computer.",
+
+      success: function (file) {
+        console.log(file);
+        this.removeFile(file);
+      }
     });
   });
 

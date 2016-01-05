@@ -99,15 +99,10 @@
 
   #brainDumpNotesList {
     li {
-      margin: 8px 0px;
+      margin: 6px 0px;
 
       .note-user-img {
         @include user-img(40px, 50%, inline-block);
-      }
-
-      p {
-        display: inline-block;
-        padding-left: 10px;
       }
     }
   }

@@ -11,7 +11,7 @@
     <% end %>
 
     <ul class="col-md-12 no-pad" id="left" data-id="0">
-      <% @brain_dump.each do |word| %>
+      <% @uncategorized_brain_dump.each do |word| %>
         <li data-id="<%= word.id %>"><%= word.word.humanize %></li>
       <% end %>
     </ul>
