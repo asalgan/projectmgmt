@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103004617) do
+ActiveRecord::Schema.define(version: 20160105201829) do
+
+  create_table "brain_dump_assignees", force: true do |t|
+    t.integer "user_id"
+    t.integer "brain_dump_id"
+  end
+
+  add_index "brain_dump_assignees", ["brain_dump_id"], name: "index_brain_dump_assignees_on_brain_dump_id", using: :btree
+  add_index "brain_dump_assignees", ["user_id"], name: "index_brain_dump_assignees_on_user_id", using: :btree
 
   create_table "brain_dump_categories", force: true do |t|
     t.string   "name"

@@ -1,9 +1,16 @@
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
   <h3>Members</h3>
-  <% @members.each do |member| %>
-    <%#= member.name %>
-    <%= image_tag 'default_avatar.png', class: "user-img"  %>
-  <% end %>
+  <ul class="membersList">
+
+    <% @members.each do |member| %>
+
+      <li data-member-id="<%= member.id %>">
+        <span data-toggle="tooltip" data-placement="left" title="<%= member.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span>
+      </li>
+
+    <% end %>
+
+  </ul>
 </nav>
 
 

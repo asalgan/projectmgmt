@@ -80,10 +80,18 @@
 
   .content {
     display:none;
+    padding: 10px;
+    background-color: $light-background-gray;
+
+    .assignees {
+      .user-img {
+        @include user-img(40px, 50%, inline-block);
+        margin: 0.6em;
+      }
+    }
 
     .actions-bar {
-      background-color: $muted-blue;
-      padding: 6px;
+      padding: 5px 0px;
 
       p {
         @include text-styling($gray, 12px, bold);

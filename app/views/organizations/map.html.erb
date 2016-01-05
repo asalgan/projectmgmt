@@ -42,6 +42,25 @@
 
                   <div class="content col-md-12 no-pad" data-brain-dump-id="<%= word.id %>">
 
+                    <div class="assignees">
+
+                      <% if word.assignees.present? %>
+
+                        <ul>
+                          <p class="text-muted ital">Team members assigned to this item:</p>
+                          <% word.assignees.each do |assignee| %>
+                            <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
+                          <% end %>
+                        </ul>
+
+                        <% else %>
+
+                        <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
+
+                      <% end %>
+
+                    </div>
+
                     <div class="actions-bar">
                       <p><b>Add a new:</b></p>
                       <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
@@ -52,8 +71,11 @@
                     <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: word %></div>
                     <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: word %></div>
 
+
                     <ul id="brainDumpNotesList" class="col-md-12 no-pad">
                       <% if word.brain_dump_notes.present? %>
+
+                        <hr>
 
                         <% word.brain_dump_notes.order('created_at DESC').each do |note| %>
                           <%= render 'brain_dump_notes/note', note: note %>

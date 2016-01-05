@@ -6,6 +6,7 @@ $orange: #ED9121;
 $gray: rgba(0,0,0,0.7);
 $white: #fff;
 $muted-blue: #F3F7F9;
+$light-background-gray: #f7f7f7;
 
 
 html {
@@ -59,6 +60,10 @@ p {
 
 .no-pad {
   padding: 0px;
+}
+
+.ital {
+  font-style: italic;
 }
 
 %transition {
