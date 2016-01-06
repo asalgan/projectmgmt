@@ -31,4 +31,10 @@ function progressBar(id, brain_dumps_total, brain_dumps_done) {
       barColor: '#bfd255'
     });
   });
+};
+
+function checkCompletion(category_id) {
+  var thisItem = $(document).find('li#category_'+category_id);
+  $(thisItem).removeClass('incomplete').addClass('complete');
+  $(thisItem).find('a').css('text-decoration','line-through')
 }

@@ -1,8 +1,8 @@
 var NoteList = $(".content[data-brain-dump-id='<%= @note.brain_dump_id %>'").children('ul');
-var $HrLine = $(NoteList).closest('hr');
-if($HrLine.length < 1) {
-  $(NoteList).prepend('<hr>');
-}
+// var $HrLine = $(NoteList).closest('hr');
+// if($HrLine.length < 1) {
+//   $(NoteList).append('<hr>');
+// }
 
 $(NoteList).prepend("<%= j render partial: 'note', locals: { note: @note } %>");
 $(".new_brain_dump_note")[0].reset();

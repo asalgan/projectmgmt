@@ -14,9 +14,12 @@
 
       <ul>
         <% @brain_dump_categories.each do |category| %>
-          <li class="mix incomplete col-md-4 col-xs-6 no-pad"><a href="#<%= category.name.gsub(' ','_') %>" class="col-md-12 no-pad"><%= category.name %></a><div id="jqmeter-container_<%= category.id %>"></div></li>
+          <li class="mix col-md-4 col-xs-6 no-pad incomplete" id="category_<%= category.id %>"><a href="#<%= category.name.gsub(' ','_') %>" class="col-md-12 no-pad"><%= category.name %></a><div id="jqmeter-container_<%= category.id %>"></div></li>
           <script type="text/javascript">
-            progressBar('<%= category.id %>', '<%= category.brain_dumps.count %>', '<%= category.brain_dumps.where(done:true).count %>');
+            progressBar('<%= category.id %>', '<%= category.brain_dumps.count %>', '<%= category.brain_dumps.where(done: true).count %>');
+            <% if !category.brain_dumps.collect(&:done).include?(false) %>
+              checkCompletion('<%= category.id %>');
+            <% end %>
           </script>
         <% end %>
       </ul>
