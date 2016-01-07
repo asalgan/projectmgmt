@@ -88,50 +88,50 @@
       border: 1px solid #e7e7e7;
       height: 100%;
 
-      span {
+      a {
         line-height: 1.1em;
-        text-align: center;
         display: inline-block;
         vertical-align: middle;
         width: 100%;
+        @include text-styling($gray, 1em, 500);
       }
     }
   }
+}
 
-  .content {
-    display:none;
-    padding: 10px;
-    background-color: $light-background-gray;
+.content {
+  // display:none;
+  padding: 10px;
+  background-color: $light-background-gray;
 
-    .assignees {
-      .user-img {
-        @include user-img(40px, 50%, inline-block);
-        margin: 0.6em;
-      }
-    }
-
-    .actions-bar {
-      padding: 5px 0px;
-
-      p {
-        @include text-styling($gray, 12px, bold);
-        display: inline-block;
-      }
-
-      a {
-        padding: 0px 5px;
-        @include text-styling($white, 12px, 600);
-      }
+  .assignees {
+    .user-img {
+      @include user-img(40px, 50%, inline-block);
+      margin: 0.6em;
     }
   }
 
-  #brainDumpNotesList {
-    li {
-      margin: 6px 0px;
+  .actions-bar {
+    padding: 5px 0px;
 
-      .note-user-img {
-        @include user-img(40px, 50%, inline-block);
-      }
+    p {
+      @include text-styling($gray, 12px, bold);
+      display: inline-block;
+    }
+
+    a {
+      padding: 0px 5px;
+      @include text-styling($white, 12px, 600);
+    }
+  }
+}
+
+#brainDumpNotesList {
+  li {
+    margin: 6px 0px;
+
+    .note-user-img {
+      @include user-img(40px, 50%, inline-block);
     }
   }
 }
