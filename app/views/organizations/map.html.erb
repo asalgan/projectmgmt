@@ -1,7 +1,9 @@
 <div class="container">
+
   <h1><%= @organization.name %></h1>
   <% @members = @organization.members %>
   <%= render 'shared/navbar', :collection => @members %>
+
   <div id="category_tabs">
 
     <div class="col-md-6 col-xs-12" id="mixContainer">
@@ -24,43 +26,122 @@
         <% end %>
       </ul>
 
+      <% @brain_dump_categories.each do |category| %>
+        <div class="category-box col-md-12 col-xs-12 no-pad" id="<%= category.name.gsub(' ','_') %>" style="display:none;">
+          <!-- <h5><%#= category.name.titleize %></h5> -->
+
+          <% if category.brain_dumps.present? %>
+
+            <!-- <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off"> -->
+
+              <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%= category.id %>">
+                <% category.brain_dumps.each do |word| %>
+
+                  <li class="ac-custom-list-item col-md-3 no-pad" data-id="<%= word.id %>" data-done="<%= word.done? %>">
+
+                    <div class="list-item-inner col-md-12 no-pad">
+                    <!-- <input id="<%#= word.id %>" name="<%#= word.id %>" type="checkbox"> -->
+                    <!-- <label for="<%= word.id %>"> -->
+                      <span><%= word.word.humanize %></span>
+                    <!-- </label> -->
+
+                    <!-- <a class="expander" href="#">Expand</a> -->
+<!--
+                    <div class="content col-md-12 no-pad" data-brain-dump-id="<%= word.id %>">
+
+                      <div class="assignees">
+
+                        <%# if word.assignees.present? %>
+
+                          <ul>
+                            <p class="text-muted ital">Team members assigned to this item:</p>
+                            <%# word.assignees.each do |assignee| %>
+                              <li><span data-toggle="tooltip" data-placement="left" title="<%#= assignee.name %>" data-trigger="hover"><%#= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
+                            <%# end %>
+                          </ul>
+
+                          <%# else %>
+
+                          <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
+
+                        <%# end %>
+
+                      </div>
+
+                      <div class="actions-bar">
+                        <p><b>Add a new:</b></p>
+                        <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
+                        <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
+                      </div>
+
+                      <div id="NoteForm" class="hidden"><%#= render 'brain_dump_notes/note_form', word: word %></div>
+                      <div id="FileForm" class="hidden"><%#= render 'brain_dump_notes/file_form', word: word %></div>
+
+
+                      <ul id="brainDumpNotesList" class="col-md-12 no-pad">
+                        <%# if word.brain_dump_notes.present? %>
+
+                          <hr>
+
+                          <%# word.brain_dump_notes.order('created_at DESC').each do |note| %>
+                            <%#= render 'brain_dump_notes/note', note: note %>
+                          <%# end %>
+
+                        <%# end %>
+                      </ul>
+
+                    </div> -->
+                    </div>
+
+                  </li>
+
+                <% end %>
+
+              </ul>
+
+            <!-- </form> -->
+
+          <% end %>
+
+        </div>
+      <% end %>
+
     </div>
 
 
+<!--<%# @brain_dump_categories.each do |category| %>
+      <div class="col-md-6 col-xs-12" id="<%#= category.name.gsub(' ','_') %>">
+        <h5><%#= category.name.titleize %></h5>
 
-    <% @brain_dump_categories.each do |category| %>
-      <div class="col-md-6 col-xs-12" id="<%= category.name.gsub(' ','_') %>">
-        <h5><%= category.name.titleize %></h5>
-
-        <% if category.brain_dumps.present? %>
+        <%# if category.brain_dumps.present? %>
 
           <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
 
-            <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%= category.id %>">
-              <% category.brain_dumps.each do |word| %>
+            <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%#= category.id %>">
+              <%# category.brain_dumps.each do |word| %>
 
-                <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%= word.id %>" data-done="<%= word.done? %>"><input id="<%= word.id %>" name="<%= word.id %>" type="checkbox"><label for="<%= word.id %>"><%= word.word.humanize %></label>
+                <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%#= word.id %>" data-done="<%#= word.done? %>"><input id="<%#= word.id %>" name="<%#= word.id %>" type="checkbox"><label for="<%#= word.id %>"><%#= word.word.humanize %></label>
 
                   <a class="expander" href="#">Expand</a>
 
-                  <div class="content col-md-12 no-pad" data-brain-dump-id="<%= word.id %>">
+                  <div class="content col-md-12 no-pad" data-brain-dump-id="<%#= word.id %>">
 
                     <div class="assignees">
 
-                      <% if word.assignees.present? %>
+                      <%# if word.assignees.present? %>
 
                         <ul>
                           <p class="text-muted ital">Team members assigned to this item:</p>
-                          <% word.assignees.each do |assignee| %>
-                            <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
-                          <% end %>
+                          <%# word.assignees.each do |assignee| %>
+                            <li><span data-toggle="tooltip" data-placement="left" title="<%#= assignee.name %>" data-trigger="hover"><%#= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
+                          <%# end %>
                         </ul>
 
-                        <% else %>
+                        <%# else %>
 
                         <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
 
-                      <% end %>
+                      <%# end %>
 
                     </div>
 
@@ -68,39 +149,39 @@
                       <p><b>Add a new:</b></p>
                       <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
                       <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
-                      <!-- <a href="#" class="blue-btn blue-btn-hover show-link-form">Link</a> -->
-                    </div>
+                      <a href="#" class="blue-btn blue-btn-hover show-link-form">Link</a> -->
+<!--                     </div>
 
-                    <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: word %></div>
-                    <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: word %></div>
+                    <div id="NoteForm" class="hidden"><%#= render 'brain_dump_notes/note_form', word: word %></div>
+                    <div id="FileForm" class="hidden"><%#= render 'brain_dump_notes/file_form', word: word %></div>
 
 
                     <ul id="brainDumpNotesList" class="col-md-12 no-pad">
-                      <% if word.brain_dump_notes.present? %>
+                      <%# if word.brain_dump_notes.present? %>
 
                         <hr>
 
-                        <% word.brain_dump_notes.order('created_at DESC').each do |note| %>
-                          <%= render 'brain_dump_notes/note', note: note %>
-                        <% end %>
+                        <%# word.brain_dump_notes.order('created_at DESC').each do |note| %>
+                          <%#= render 'brain_dump_notes/note', note: note %>
+                        <%# end %>
 
-                      <% end %>
+                      <%# end %>
                     </ul>
 
                   </div>
 
                 </li>
 
-              <% end %>
+              <%# end %>
 
             </ul>
 
           </form>
 
-        <% end %>
+        <%# end %>
 
       </div>
-    <% end %>
+    <%# end %> -->
 
   </div>
 
@@ -111,74 +192,67 @@
   $(document).ready(function() {
 
     $(function() {
-      $( "#category_tabs" ).tabs();
-    });
+      $( "#category_tabs" ).tabs({
+        create: function( event, ui ) {
+          $(function() {
+            $.each($(".category-box"), function() {
+              $(this).hide();
+            });
+          });
+        },
+        activate: function( event, ui ) {
+          $.each($(".mix"), function() {
+            $(this).hide();
+          });
 
-    $(function() {
-      $('#mixContainer').mixItUp();
-    });
+          $.each($(".ac-custom-list-item"), function() {
+            var width = $(this).width();
+            $(this).height(width);
 
-    $(function() {
-      $('.expander').simpleexpand();
-    });
+            var inner = $(this).find('.list-item-inner');
+            $(inner).css('line-height',(width-10).toString()+'px')
 
-    createCheckboxes();
-
-
-    $(function() {
-      $.each($("li[data-done='true']"), function() {
-        $(this).find('label').addClass('special');
+          });
+        }
       });
     });
 
-    $(".show-note-form").off('click').on('click', function(e) {
-      e.preventDefault();
-      var $this = $(this),
-          NoteForm = $this.parents(".content").find("#NoteForm");
-          FileForm = $this.parents(".content").find("#FileForm");
+    $('#mixContainer').mixItUp();
 
-      $(NoteForm).fadeToggle(400).toggleClass('hidden');
-      $(FileForm).addClass('hidden');
-    });
+    $('.expander').simpleexpand();
 
-    $(".show-file-form").off('click').on('click', function(e) {
-      e.preventDefault();
-      var $this = $(this),
-          NoteForm = $this.parents(".content").find("#NoteForm");
-          FileForm = $this.parents(".content").find("#FileForm");
-
-      $(FileForm).fadeToggle(400).toggleClass('hidden');
-      $(NoteForm).addClass('hidden');
-    });
+    createCheckboxes();
 
 
   });
 </script>
 
+
+
 <style>
-  .outer-therm {
-    margin: 0px;
-    margin-top: 50px;
-  }
 
-  .therm {
-    border-radius: 0px;
-  }
+.outer-therm {
+  margin: 0px;
+  margin-top: 50px;
+}
 
-  .inner-therm {
-    font-size: 12px;
-  }
+.therm {
+  border-radius: 0px;
+}
 
-  .inner-therm span {
-    padding: 0px !important;
-    float: left;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    position: absolute;
-    left: 3px;
-    font-weight: 600;
-    bottom: 8px;
-  }
+.inner-therm {
+  font-size: 12px;
+}
+
+.inner-therm span {
+  padding: 0px !important;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  left: 3px;
+  font-weight: 600;
+  bottom: 8px;
+}
 </style>
-
 

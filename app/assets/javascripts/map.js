@@ -16,8 +16,38 @@ $(document).ready(function() {
       }
     });
   });
-});
 
+
+
+  $(".show-note-form").off('click').on('click', function(e) {
+    e.preventDefault();
+    var $this = $(this),
+        NoteForm = $this.parents(".content").find("#NoteForm");
+        FileForm = $this.parents(".content").find("#FileForm");
+
+    $(NoteForm).fadeToggle(400).toggleClass('hidden');
+    $(FileForm).addClass('hidden');
+  });
+
+
+  $(".show-file-form").off('click').on('click', function(e) {
+    e.preventDefault();
+    var $this = $(this),
+        NoteForm = $this.parents(".content").find("#NoteForm");
+        FileForm = $this.parents(".content").find("#FileForm");
+
+    $(FileForm).fadeToggle(400).toggleClass('hidden');
+    $(NoteForm).addClass('hidden');
+  });
+
+
+  $(function() {
+    $.each($("li[data-done='true']"), function() {
+      $(this).find('label').addClass('special');
+    });
+  });
+
+});
 
 
 

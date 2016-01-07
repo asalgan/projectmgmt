@@ -78,6 +78,26 @@
 
 .brain-dump-category-list {
 
+  .ac-custom-list-item {
+    padding: 4px;
+
+    .list-item-inner {
+      padding: 4px;
+      word-wrap: break-word;
+      background-color: white;
+      border: 1px solid #e7e7e7;
+      height: 100%;
+
+      span {
+        line-height: 1.1em;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+      }
+    }
+  }
+
   .content {
     display:none;
     padding: 10px;
@@ -300,5 +320,6 @@
 .ac-list svg path {
   stroke-width: 4px;
 }
+
 
 
