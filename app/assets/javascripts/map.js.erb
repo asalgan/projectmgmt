@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+  $('#mixContainer').mixItUp();
+
+
   $(".submit-note-button").off('click').on('click', function(e){
     $this = $(this);
     e.preventDefault();
@@ -47,6 +51,75 @@ $(document).ready(function() {
       $(this).find('.fa-check').css('display','inline');
       var parentElem = $(this).closest('.brain_dump_info').attr('id');
       $(".brain-dump-tab[href=#" + parentElem +"]").append('<img src="/assets/green_checkmark.png" />');
+    });
+  });
+
+
+  $(function() {
+    $(".circle").off('click').on('click', function() {
+      var $this = $(this),
+          brainDumpId = $this.attr('data-id'),
+          parentElem = $this.closest('.brain_dump_info').attr('id');
+
+      var url = window.location.origin + "/brain_dumps/" + brainDumpId + '/check_done'
+
+      $.getJSON( url, function( data ) {
+        if(data === true) {
+          $this.removeClass('done');
+          $this.find('.fa-check').css('display','none');
+          $this.attr('data-done', false);
+          $(".brain-dump-tab[href=#" + parentElem +"]").children("img").remove();
+        } else {
+          $this.addClass('done');
+          $this.find('.fa-check').css('display','inline');
+          $this.attr('data-done', true);
+          $(".brain-dump-tab[href=#" + parentElem +"]").append("<img src='/assets/green_checkmark.png' />");
+        }
+      });
+
+      $.ajax({
+        url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
+        type: 'PUT',
+        format: 'json',
+        cache: false
+      });
+    });
+  });
+
+
+  $(function() {
+    $(".brain-dump-tab").on('click', function(e) {
+      e.preventDefault();
+      var target = $(this).attr('href');
+      $(target).show().siblings('div.brain_dump_info').hide();
+    });
+  });
+
+
+  $(function() {
+    $( "#category_tabs" ).tabs({
+      create: function( event, ui ) {
+        $(function() {
+          $.each($(".category-box"), function() {
+            $(this).hide();
+          });
+        });
+      },
+      activate: function( event, ui ) {
+        $.each($(".mix"), function() {
+          $(this).hide();
+        });
+
+
+        $.each($(".ac-custom-list-item"), function() {
+          var width = $(this).width();
+          $(this).height(width);
+
+          var inner = $(this).find('.list-item-inner');
+          $(inner).css('line-height',(width-10).toString()+'px')
+
+        });
+      }
     });
   });
 

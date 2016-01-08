@@ -101,159 +101,9 @@
 
     <% end %>
 
+  </div><!-- // .row -->
 
-  <!--<%# @brain_dump_categories.each do |category| %>
-        <div class="col-md-6 col-xs-12" id="<%#= category.name.gsub(' ','_') %>">
-          <h5><%#= category.name.titleize %></h5>
-
-          <%# if category.brain_dumps.present? %>
-
-            <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-
-              <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%#= category.id %>">
-                <%# category.brain_dumps.each do |word| %>
-
-                  <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%#= word.id %>" data-done="<%#= word.done? %>">
-                    <input id="<%#= word.id %>" name="<%#= word.id %>" type="checkbox">
-                    <label for="<%#= word.id %>"><%#= word.word.humanize %></label>
-
-                    <a class="expander" href="#">Expand</a>
-
-                    <div class="content col-md-12 no-pad" data-brain-dump-id="<%#= word.id %>">
-
-                      <div class="assignees">
-
-                        <%# if word.assignees.present? %>
-
-                          <ul>
-                            <p class="text-muted ital">Team members assigned to this item:</p>
-                            <%# word.assignees.each do |assignee| %>
-                              <li><span data-toggle="tooltip" data-placement="left" title="<%#= assignee.name %>" data-trigger="hover"><%#= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
-                            <%# end %>
-                          </ul>
-
-                          <%# else %>
-
-                          <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
-
-                        <%# end %>
-
-                      </div>
-
-                      <div class="actions-bar">
-                        <p><b>Add a new:</b></p>
-                        <a href="#" class="blue-btn blue-btn-hover show-note-form">Note</a>
-                        <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
-                        <a href="#" class="blue-btn blue-btn-hover show-link-form">Link</a>
-                      </div>
-
-                      <div id="NoteForm" class="hidden"><%#= render 'brain_dump_notes/note_form', word: word %></div>
-                      <div id="FileForm" class="hidden"><%#= render 'brain_dump_notes/file_form', word: word %></div>
-
-
-                      <ul id="brainDumpNotesList" class="col-md-12 no-pad">
-                        <%# if word.brain_dump_notes.present? %>
-
-                          <hr>
-
-                          <%# word.brain_dump_notes.order('created_at DESC').each do |note| %>
-                            <%#= render 'brain_dump_notes/note', note: note %>
-                          <%# end %>
-
-                        <%# end %>
-                      </ul>
-
-                    </div>
-
-                  </li>
-
-                <%# end %>
-
-              </ul>
-
-            </form>
-
-          <%# end %>
-
-        </div>
-      <%# end %> -->
-  </div>
-
-</div><!-- // .container -->
-
-
-<script>
-  $(document).ready(function() {
-
-    $(".brain-dump-tab").on('click', function(e) {
-      e.preventDefault();
-      var target = $(this).attr('href');
-      $(target).show().siblings('div.brain_dump_info').hide();
-    });
-
-
-    $(function() {
-      $( "#category_tabs" ).tabs({
-        create: function( event, ui ) {
-          $(function() {
-            $.each($(".category-box"), function() {
-              $(this).hide();
-            });
-          });
-        },
-        activate: function( event, ui ) {
-          $.each($(".mix"), function() {
-            $(this).hide();
-          });
-
-
-          $.each($(".ac-custom-list-item"), function() {
-            var width = $(this).width();
-            $(this).height(width);
-
-            var inner = $(this).find('.list-item-inner');
-            $(inner).css('line-height',(width-10).toString()+'px')
-
-          });
-        }
-      });
-    });
-
-    $('#mixContainer').mixItUp();
-
-
-    $(".circle").off('click').on('click', function() {
-      var $this = $(this),
-          brainDumpId = $this.attr('data-id'),
-          parentElem = $this.closest('.brain_dump_info').attr('id');
-
-      var url = window.location.origin + "/brain_dumps/" + brainDumpId + '/check_done'
-
-      $.getJSON( url, function( data ) {
-        if(data === true) {
-          $this.removeClass('done');
-          $this.find('.fa-check').css('display','none');
-          $this.attr('data-done', false);
-          $(".brain-dump-tab[href=#" + parentElem +"]").children("img").remove();
-        } else {
-          $this.addClass('done');
-          $this.find('.fa-check').css('display','inline');
-          $this.attr('data-done', true);
-          $(".brain-dump-tab[href=#" + parentElem +"]").append("<%= j image_tag 'green_checkmark.png' %>");
-        }
-      });
-
-      $.ajax({
-        url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
-        type: 'PUT',
-        format: 'json',
-        cache: false
-      });
-    });
-
-
-  });
-</script>
+</div><!-- // .container-fluid -->
 
 
 
@@ -282,5 +132,6 @@
   font-weight: 600;
   bottom: 8px;
 }
+
 </style>
 
