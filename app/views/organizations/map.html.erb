@@ -64,14 +64,15 @@
         <div class="content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
 
           <% if item.assignees.present? %>
-            <ul class="assignees">
-              <p class="text-muted ital">Team members assigned to this item:</p>
+            <p class="text-muted ital">Team members assigned to this item:</p>
+            <ul class="assignees" data-id="<%= item.id %>">
               <% item.assignees.each do |assignee| %>
                 <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
               <% end %>
             </ul>
           <% else %>
             <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
+            <ul class="assignees" data-id="<%= item.id %>"></ul>
           <% end %>
 
           <div class="actions-bar">
@@ -106,9 +107,14 @@
 </div><!-- // .container-fluid -->
 
 
+<script>
+$(document).ready(function() {
+  assignMembers();
+});
+</script>
+
 
 <style>
-
 .outer-therm {
   margin: 0px;
   margin-top: 50px;

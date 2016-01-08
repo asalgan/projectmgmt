@@ -1,11 +1,11 @@
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
   <h3>Members</h3>
-  <ul class="membersList">
+  <ul id="membersList">
 
     <% @members.each do |member| %>
 
       <li data-member-id="<%= member.id %>">
-        <span data-toggle="tooltip" data-placement="left" title="<%= member.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span>
+        <span data-toggle="tooltip" data-placement="left" title="<%= member.name %>" data-trigger="hover" data-id="<%= member.id %>"><%= image_tag 'default_avatar.png', class: "user-img" %></span>
       </li>
 
     <% end %>

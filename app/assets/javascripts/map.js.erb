@@ -125,4 +125,56 @@ $(document).ready(function() {
 
 });
 
+function assignMembers() {
+  var membersList = document.getElementById('membersList');
+  var containers = $(".assignees").toArray();
+
+  containers.push(membersList)
+
+  dragula(containers, {
+    copy: true
+  })
+  .on('drag', function (el, source) {
+    if($(".assignees").children('li').size() < 1) {
+      $(".assignees").css({'height':'57px',
+                         'border':'1px dotted #b7b7b7'
+                        })
+    } else {
+    $(".assignees").css({'height':'100%',
+                         'border':'1px dotted #b7b7b7'
+                        })
+    }
+  }).on('move', function (el, source, handle, sibling) {
+    if(!el.hasClass("user-img")) {
+      return false } else { return true }
+  }).on('cloned', function (el, source) {
+    $(el).css({'border-radius':'50%',
+               'display':'inline-block'
+              });
+  }).on('cancel', function (el, container, source) {
+    $(".assignees").css({'height':'0px',
+                         'border':'none'
+                        })
+  }).on('copy', function (el, source) {
+    return source === membersList
+  }).on('accept', function (el, target) {
+    return target !== membersList
+  }).on('drop', function (el, target, source, sibling) {
+    $(".assignees").css({'height':'100%',
+                         'border':'none'
+                        });
+    // console.log($(target).siblings());
+    // CHANGE TEXT FOR JUST THIS SPECIFIC DROPZONE NOT ALL
+    $(target).siblings('p.text-muted').text('Team members assigned to this item:');
+    var brain_dump_id = $(target).attr('data-id');
+    var user_id = $(el).find('span').attr('data-id');
+
+    // $.ajax({
+    //   type: 'POST',
+    //   url: window.location.origin + '/brain_dump_assignees/create',
+    //   data: { category_id: category_id }
+    // });
+  });
+}
+
 

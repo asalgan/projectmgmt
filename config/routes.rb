@@ -23,4 +23,6 @@ Rails.application.routes.draw do
 
   resources :brain_dump_notes
 
+  resources :brain_dump_assignees
+
 end
