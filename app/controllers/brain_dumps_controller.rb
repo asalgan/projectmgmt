@@ -50,6 +50,11 @@ class BrainDumpsController < ApplicationController
     render nothing: true
   end
 
+  def check_done
+    @brain_dump = BrainDump.find(params[:id])
+    render json: @brain_dump.done.as_json
+  end
+
   private
 
     def brain_dump_params

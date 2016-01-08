@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/brain_dumps/:id/check_done' => 'brain_dumps#check_done'
   put '/brain_dumps/:id/update_completion' => 'brain_dumps#update_completion'
   resources :brain_dumps
 

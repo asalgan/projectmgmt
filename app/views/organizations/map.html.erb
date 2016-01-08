@@ -54,9 +54,12 @@
 
 
     <% @brain_dump_items.each do |item| %>
-      <div class="brain_dump_info col-md-6 col-xs-12" id="<%= item.word.downcase.gsub(' ','_')  + "_#{item.id}" %>" style="display:none;">
-        <%= item.word %>
-        <!-- <a class="expander" href="#">Expand</a> -->
+      <div class="brain_dump_info col-md-6 col-xs-12 no-pad" id="<%= item.word.downcase.gsub(' ','_')  + "_#{item.id}" %>" style="display:none;">
+
+        <div>
+          <span class="circle" data-done="<%= item.done? %>" data-id="<%= item.id %>"><i class="fa fa-check"></i></span>
+          <h4 class="word-header"><%= item.word.humanize %></h4>
+        </div>
 
         <div class="content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
 
@@ -110,7 +113,9 @@
               <ul class="brain-dump-category-list col-md-12 no-pad" data-category-id="<%#= category.id %>">
                 <%# category.brain_dumps.each do |word| %>
 
-                  <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%#= word.id %>" data-done="<%#= word.done? %>"><input id="<%#= word.id %>" name="<%#= word.id %>" type="checkbox"><label for="<%#= word.id %>"><%#= word.word.humanize %></label>
+                  <li class="ac-custom-list-item col-md-12 no-pad" data-id="<%#= word.id %>" data-done="<%#= word.done? %>">
+                    <input id="<%#= word.id %>" name="<%#= word.id %>" type="checkbox">
+                    <label for="<%#= word.id %>"><%#= word.word.humanize %></label>
 
                     <a class="expander" href="#">Expand</a>
 
@@ -216,9 +221,35 @@
 
     $('#mixContainer').mixItUp();
 
-    // $('.expander').simpleexpand();
 
-    createCheckboxes();
+    $(".circle").off('click').on('click', function() {
+      var $this = $(this),
+          brainDumpId = $this.attr('data-id'),
+          parentElem = $this.closest('.brain_dump_info').attr('id');
+
+      var url = window.location.origin + "/brain_dumps/" + brainDumpId + '/check_done'
+
+      $.getJSON( url, function( data ) {
+        if(data === true) {
+          $this.removeClass('done');
+          $this.find('.fa-check').css('display','none');
+          $this.attr('data-done', false);
+          $(".brain-dump-tab[href=#" + parentElem +"]").children("img").remove();
+        } else {
+          $this.addClass('done');
+          $this.find('.fa-check').css('display','inline');
+          $this.attr('data-done', true);
+          $(".brain-dump-tab[href=#" + parentElem +"]").append("<%= j image_tag 'green_checkmark.png' %>");
+        }
+      });
+
+      $.ajax({
+        url: window.location.origin + "/brain_dumps/" + brainDumpId + '/update_completion',
+        type: 'PUT',
+        format: 'json',
+        cache: false
+      });
+    });
 
 
   });
