@@ -12,6 +12,10 @@
       .user-img {
         @include user-img(45px, 50%, inline-block);
         margin: 10px 0px 0px 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
