@@ -2,34 +2,38 @@
 
 #mixContainer {
   position: relative;
-  // min-height: -webkit-calc(100vh - 51px);
-  // min-height: -moz-calc(100vh - 51px);
-  // min-height: calc(100vh - 51px);
-  min-height: 100vh;
+  min-height: -webkit-calc(100vh - 51px);
+  min-height: -moz-calc(100vh - 51px);
+  min-height: calc(100vh - 51px);
   padding: 15px;
   background: #03899C none repeat scroll 0% 0%;
 
-  .mix {
-    @include text-styling($gray, 1em, 400);
-    display: none;
-    transform-style: preserve-3d;
-    position: relative;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.4) none repeat scroll 0% 0%;
-    line-height: 1.8em;
-    color: rgba(255, 255, 255, 0.9);
-    vertical-align: top;
-    height: 60px;
+  .mix-list {
+    margin-bottom: calc(2% - 8px);
 
-    a {
-      text-decoration: none;
-      height: 50px;
-      padding-top: 4%;
-      line-height: 1.3em;
-      @include text-styling(#fff, 0.9em, 600);
+    .mix {
+      @include text-styling($gray, 1em, 400);
+      display: none;
+      transform-style: preserve-3d;
+      position: relative;
+      text-align: center;
+      line-height: 1.8em;
+      color: rgba(255, 255, 255, 0.9);
+      vertical-align: top;
+      margin-bottom: 8px;
+      height: 70px;
 
-      &:hover {
+      a {
+        background: rgba(255, 255, 255, 0.4) none repeat scroll 0% 0%;
         text-decoration: none;
+        height: 60px;
+        padding: 4% 2%;
+        line-height: 1.3em;
+        @include text-styling(#fff, 0.9em, 600);
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
@@ -67,7 +71,7 @@
   -moz-border-left-colors: none;
   border-image: none;
   top: -15px;
-  left: -15px;
+  left: -10px;
   transform: rotate(45deg);
 }
 
@@ -173,6 +177,13 @@
       a {
         padding: 0px 5px;
         @include text-styling($white, 12px, 600);
+      }
+    }
+
+    #FileForm {
+      .dropzone {
+        border: 2px dashed rgba(0,0,0,0.3);
+        min-height: 100px;
       }
     }
   }

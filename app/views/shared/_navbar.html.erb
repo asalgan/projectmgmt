@@ -1,4 +1,4 @@
-<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+<nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom" id="cbp-spmenu-s4">
   <h3>Members</h3>
   <ul id="membersList">
 
@@ -13,23 +13,15 @@
   </ul>
 </nav>
 
-
-<div class="main">
-  <section>
-    <button id="showRight">Show/Hide Right Slide Menu</button>
-  </section>
-</div>
-
-
 <script>
 
-  var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
-      showRight = document.getElementById( 'showRight' ),
+  var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+      showBottom = document.getElementById( 'showBottom' ),
       body = document.body;
 
-  showRight.onclick = function() {
+  showBottom.onclick = function() {
     classie.toggle( this, 'active' );
-    classie.toggle( menuRight, 'cbp-spmenu-open' );
+    classie.toggle( menuBottom, 'cbp-spmenu-open' );
   };
 
 </script>
