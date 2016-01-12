@@ -2,7 +2,9 @@
   <%#= image_path note.user.user_image class: "note-user-img" %>
   <div class="col-md-1 no-pad"><%= image_tag 'default_avatar.png', class: "note-user-img" %></div>
   <div class="col-md-11 no-pad" style="padding-left:10px;">
-    <b><%= note.user.name %>:</b><br>
+    <b><%= note.user.name %></b> <span class="text-muted" style="font-size: 0.8em;"><%= note.created_at.strftime("%a, %b %e, %Y") %></span><br>
     <%= note.body_html %>
   </div>
+  <hr>
 </li>
+

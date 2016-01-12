@@ -27,9 +27,9 @@
         background: rgba(255, 255, 255, 0.4) none repeat scroll 0% 0%;
         text-decoration: none;
         height: 60px;
-        padding: 4% 2%;
+        padding: 8% 4%;
         line-height: 1.3em;
-        @include text-styling(#fff, 0.9em, 600);
+        @include text-styling(#fff, 0.8em, bold);
 
         &:hover {
           text-decoration: none;
@@ -100,7 +100,7 @@
         display: table-cell;
         vertical-align: middle;
         width: 100%;
-        @include text-styling($gray, 1em, 500);
+        @include text-styling($gray, 0.8em, bold);
         height: 100%;
         line-height: 1.2em;
 
@@ -116,6 +116,10 @@
 }
 
 .brain_dump_info {
+  max-height: -webkit-calc(100vh - 51px);
+  max-height: -moz-calc(100vh - 51px);
+  max-height: calc(100vh - 51px);
+  overflow-y: scroll;
 
   .word-header-container {
     background-color: $gray;
@@ -203,7 +207,8 @@
 
   #brainDumpNotesList {
     li {
-      margin: 6px 0px;
+      padding: 10px 0px;
+      border-bottom: 1px solid #EEE;
 
       .note-user-img {
         @include user-img(40px, 50%, inline-block);

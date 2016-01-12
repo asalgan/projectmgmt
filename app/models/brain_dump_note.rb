@@ -5,6 +5,7 @@ class BrainDumpNote < ActiveRecord::Base
   auto_html_for :body do
     html_escape
     image
+    twitter
     youtube(width: 560, height: 315, autoplay: false)
     vimeo(width: 560, height: 315, autoplay: false)
     soundcloud(width: 560, height: 100, autoplay: false)
