@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105201829) do
+ActiveRecord::Schema.define(version: 20160111205205) do
 
   create_table "brain_dump_assignees", force: true do |t|
     t.integer "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160105201829) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.date     "due_date"
   end
 
   add_index "brain_dumps", ["brain_dump_category_id"], name: "index_brain_dumps_on_brain_dump_category_id", using: :btree

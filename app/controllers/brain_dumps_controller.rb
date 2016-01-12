@@ -50,6 +50,13 @@ class BrainDumpsController < ApplicationController
     render nothing: true
   end
 
+  def update_due_date
+    @brain_dump = BrainDump.find(params[:id])
+    date = params[:due_date].to_date
+    @brain_dump.update(due_date: date)
+    render nothing: true
+  end
+
   def check_done
     @brain_dump = BrainDump.find(params[:id])
     render json: @brain_dump.done.as_json

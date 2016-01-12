@@ -56,9 +56,10 @@
     <% @brain_dump_items.each do |item| %>
       <div class="brain_dump_info col-md-6 col-xs-12 no-pad" id="<%= item.word.downcase.gsub(' ','_')  + "_#{item.id}" %>" style="display:none;">
 
-        <div>
+        <div class="word-header-container">
           <span class="circle" data-done="<%= item.done? %>" data-id="<%= item.id %>"><i class="fa fa-check"></i></span>
           <h4 class="word-header"><%= item.word.humanize %></h4>
+          <span class="assign-due-date">Due: <input type="text" class="datepicker" value="<%= item.due_date.present? ? item.due_date : 'No due date selected' %>" data-id="<%= item.id %>"></span>
         </div>
 
         <div class="content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
@@ -110,6 +111,34 @@
 <script>
 $(document).ready(function() {
   assignMembers();
+
+  $.each($('.datepicker'), function() {
+    $(this).val($(this).attr('value'));
+  });
+
+
+  $('.datepicker').datepicker({
+    nextText: ">",
+    prevText: "<",
+    onSelect: function(dateText, inst) {
+      console.log($(this))
+      var id = $(this).attr('data-id');
+
+      var dateAsObject = $(this).datepicker( 'getDate' );
+      console.log(id)
+
+      $.ajax({
+        url: window.location.origin + "/brain_dumps/" + id + "/update_due_date",
+        type: "PUT",
+        data: { due_date: dateAsObject },
+        format: 'json',
+        success:function(data, textStatus, jqXHR) {
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+        }
+      });
+    }
+  });
 });
 </script>
 
@@ -138,6 +167,7 @@ $(document).ready(function() {
   font-weight: 600;
   bottom: 8px;
 }
+
 
 </style>
 

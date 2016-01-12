@@ -15,7 +15,7 @@
     <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="<%= @page_class %>">
     <header>
       <%= render 'layouts/navigation' %>
     </header>

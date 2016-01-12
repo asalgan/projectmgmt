@@ -9,6 +9,7 @@ class OrganizationsController < ApplicationController
   end
 
   def map
+    @page_class = "brain-dumps-map"
   end
 
 

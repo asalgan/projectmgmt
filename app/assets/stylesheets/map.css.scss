@@ -117,43 +117,56 @@
 
 .brain_dump_info {
 
-  .word-header {
+  .word-header-container {
     background-color: $gray;
-    margin: 0px;
+    height: 3.3em;
     padding: 10px;
-    @include text-styling(white !important, 1.3em, bold);
-    width: 100%;
-    text-align: left;
-    padding-left: 40px;
-  }
 
-  .circle {
-    width: 18px;
-    height: 18px;
-    background: transparent;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    position: absolute;
-    top: 12px;
-    left: 10px;
-    border: 3px solid #fff;
+    .word-header {
+      margin: 0px;
+      padding: 10px;
+      @include text-styling(white !important, 1.3em, bold);
+      width: 100%;
+      text-align: left;
+      padding-left: 30px;
+      display: inline;
+      line-height: 1.3em;
+    }
 
-    .fa-check {
+    .circle {
+      width: 18px;
+      height: 18px;
+      background: transparent;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
       position: absolute;
-      color: $green;
-      top: -2px;
-      display: none;
+      top: 1.1em;
+      left: 10px;
+      border: 3px solid #fff;
+
+      .fa-check {
+        position: absolute;
+        color: $green;
+        top: -2px;
+        display: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
-    &:hover {
-      cursor: pointer;
+    .circle.done {
+      border: 3px solid $green;
+    }
+
+    .assign-due-date {
+      color: white;
     }
   }
 
-  .circle.done {
-    border: 3px solid $green;
-  }
+
 
   .content {
     padding: 10px;
@@ -195,6 +208,162 @@
       .note-user-img {
         @include user-img(40px, 50%, inline-block);
       }
+    }
+  }
+}
+
+
+
+.datepicker {
+  background: transparent none repeat scroll 0% 0%;
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 white;
+  text-decoration: underline;
+  font-weight: 500;
+  @extend %transition;
+
+  &:hover {
+    cursor: pointer;
+    text-shadow: 0 0 0 darken(white, 10%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.brain-dumps-map .ui-datepicker {
+  background: #29a2d9;
+  border: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  box-shadow: 0 1px 3px #252525;
+  padding: 0;
+
+  .ui-datepicker-header {
+    border: none;
+    border-bottom: 1px solid #2d97cb;
+    background: transparent;
+    font-weight: normal;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 200px;
+
+    .ui-state-hover {
+      background: transparent;
+      border-color: transparent;
+      cursor: pointer;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+    }
+  }
+
+  .ui-datepicker-title {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    color: white;
+
+    .ui-datepicker-month {
+      font-weight: bold;
+    }
+  }
+
+  .ui-datepicker-prev-hover,
+  .ui-datepicker-next-hover,
+  .ui-datepicker-next,
+  .ui-datepicker-prev {
+    top: 1.7em;
+    border:none;
+    color: white;
+    text-decoration: none;
+  }
+
+  .ui-datepicker-next {
+    float: right;
+    margin-right: 1em;
+  }
+
+  .ui-datepicker-prev {
+    float: left;
+    margin-left: 1em;
+
+    span {
+      background-position: -96px -32px;
+    }
+  }
+
+  .ui-datepicker-prev-hover {
+    left: 2px;
+
+    span {
+      background-position: -96px -48px;
+    }
+  }
+
+  .ui-datepicker-next-hover {
+    right: 2px;
+
+    span {
+      background-position: -32px -48px;
+    }
+  }
+
+  .ui-datepicker-next span,
+  .ui-datepicker-prev span {
+    background-position: -32px -32px;
+    margin-top: 0;
+    top: 0;
+    font-weight: normal;
+  }
+
+  table {
+    margin: 0;
+    width: 100%;
+  }
+
+  th {
+    padding: 2em 0;
+    color: #9fd9f1;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-top: 1px solid #3fabdc;
+    text-align: center;
+  }
+
+  td {
+    border: none;
+    text-align: center;
+    padding: 0;
+
+    a {
+      text-decoration: none;
+      display: block;
+      border-radius: 0px;
+    }
+
+    .ui-state-default {
+      background: transparent;
+      border: none;
+      text-align: center;
+      padding: 0.3em;
+      margin: 0;
+      font-weight: normal;
+      color: #efefef;
+      font-size: 12px;
+    }
+
+    .ui-state-active,
+    .ui-state-hover {
+      background: #1b7fb0;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
     }
   }
 }
