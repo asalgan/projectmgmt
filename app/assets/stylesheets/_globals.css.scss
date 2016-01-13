@@ -41,6 +41,11 @@ a.thumbnail, a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 a:focus, textarea:focus, button:focus {
   outline: none;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
 textarea {
   resize: none;
 }
