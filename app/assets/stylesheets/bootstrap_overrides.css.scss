@@ -1,12 +1,11 @@
 @import "globals";
 
 .navbar {
-  z-index: 0;
   margin-bottom: 0px !important;
-  // position: relative;
   border-width: 0px 0px 1px !important;
   border-radius: 0px !important;
-  position: fixed;
+  // position: fixed;
   width: 100%;
   z-index: 100;
+  background-color: $gray !important;
 }

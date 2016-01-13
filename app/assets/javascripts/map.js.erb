@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-  $('#mixContainer').mixItUp();
+
+  // If removing, remove all relevant JS too
+  // $('#mixContainer').mixItUp();
 
 
   $(".submit-note-button").off('click').on('click', function(e){
@@ -49,8 +51,9 @@ $(document).ready(function() {
     $.each($(".circle[data-done='true']"), function() {
       $(this).addClass('done');
       $(this).find('.fa-check').css('display','inline');
-      var parentElem = $(this).closest('.brain_dump_info').attr('id');
-      $(".brain-dump-tab[href=#" + parentElem +"]").append('<img src="/assets/green_checkmark.png" />');
+      var parentElem = $(this).attr('data-id');
+      console.log(parentElem);
+      $("#grid__item_"+parentElem).append("<img src='/assets/green_checkmark.png' class='checkmark-img' />");
     });
   });
 
@@ -58,8 +61,7 @@ $(document).ready(function() {
   $(function() {
     $(".circle").off('click').on('click', function() {
       var $this = $(this),
-          brainDumpId = $this.attr('data-id'),
-          parentElem = $this.closest('.brain_dump_info').attr('id');
+          brainDumpId = $this.attr('data-id');
 
       var url = window.location.origin + "/brain_dumps/" + brainDumpId + '/check_done'
 
@@ -68,12 +70,12 @@ $(document).ready(function() {
           $this.removeClass('done');
           $this.find('.fa-check').css('display','none');
           $this.attr('data-done', false);
-          $(".brain-dump-tab[href=#" + parentElem +"]").children("img").remove();
+          $("#grid__item_"+brainDumpId).children("img").remove();
         } else {
           $this.addClass('done');
           $this.find('.fa-check').css('display','inline');
           $this.attr('data-done', true);
-          $(".brain-dump-tab[href=#" + parentElem +"]").append("<img src='/assets/green_checkmark.png' />");
+          $("#grid__item_"+brainDumpId).append("<img src='/assets/green_checkmark.png' class='checkmark-img' />");
         }
       });
 
@@ -87,41 +89,41 @@ $(document).ready(function() {
   });
 
 
-  $(function() {
-    $(".brain-dump-tab").on('click', function(e) {
-      e.preventDefault();
-      var target = $(this).attr('href');
-      $(target).show().siblings('div.brain_dump_info').hide();
-    });
-  });
+  // $(function() {
+  //   $(".brain-dump-tab").on('click', function(e) {
+  //     e.preventDefault();
+  //     var target = $(this).attr('href');
+  //     $(target).show().siblings('div.brain_dump_info').hide();
+  //   });
+  // });
 
 
-  $(function() {
-    $( "#category_tabs" ).tabs({
-      create: function( event, ui ) {
-        $(function() {
-          $.each($(".category-box"), function() {
-            $(this).hide();
-          });
-        });
-      },
-      activate: function( event, ui ) {
-        $.each($(".mix"), function() {
-          $(this).hide();
-        });
+  // $(function() {
+  //   $( "#category_tabs" ).tabs({
+  //     create: function( event, ui ) {
+  //       $(function() {
+  //         $.each($(".category-box"), function() {
+  //           $(this).hide();
+  //         });
+  //       });
+  //     },
+  //     activate: function( event, ui ) {
+  //       $.each($(".mix"), function() {
+  //         $(this).hide();
+  //       });
 
 
-        $.each($(".ac-custom-list-item"), function() {
-          var width = $(this).width();
-          $(this).height(width);
+  //       $.each($(".ac-custom-list-item"), function() {
+  //         var width = $(this).width();
+  //         $(this).height(width);
 
-          var inner = $(this).find('.list-item-inner');
-          $(inner).css('line-height',(width-10).toString()+'px')
+  //         var inner = $(this).find('.list-item-inner');
+  //         $(inner).css('line-height',(width-10).toString()+'px')
 
-        });
-      }
-    });
-  });
+  //       });
+  //     }
+  //   });
+  // });
 
 });
 

@@ -1,6 +1,6 @@
 $red: #FF6666;
 $blue: #31b0d5;
-$green: #62b857;
+$green: #81C483;
 $purple: #7B77C9;
 $orange: #ED9121;
 $gray: rgba(0,0,0,0.7);
@@ -42,7 +42,9 @@ a:focus, textarea:focus, button:focus {
   outline: none;
 }
 
-a:hover {
+a, a:hover {
+  text-decoration: none;
+  outline: none;
   text-decoration: none;
 }
 

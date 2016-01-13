@@ -6,11 +6,21 @@
 
     <div id="theSidebar" class="sidebar">
       <button class="close-button fa fa-fw fa-close"></button>
-      <h1><span>Animated</span> Grid Layout</h1>
-      <nav class="codrops-demos">
-        <ul>
+      <h1><span>Brain Dump</span> Categories</h1>
+      <nav>
+        <ul class="category-list">
           <% @brain_dump_categories.each do |category| %>
-            <li id="category_<%= category.id %>" ><a href="#<%= category.name.downcase.gsub(' ','_') %>"><%= category.name %></a></li>
+            <li id="category_<%= category.id %>" >
+              <a href="#<%= category.name.downcase.gsub(' ','_') %>"><%= category.name %>
+                <script type="text/javascript">
+                  progressBar('<%= category.id %>', '<%= category.brain_dumps.count %>', '<%= category.brain_dumps.where(done: true).count %>');
+                  <% if !category.brain_dumps.collect(&:done).include?(false) %>
+                    checkCompletion('<%= category.id %>');
+                  <% end %>
+                </script>
+                <div id="jqmeter-container_<%= category.id %>"></div>
+              </a>
+            </li>
           <% end %>
         </ul>
       </nav>
@@ -33,7 +43,7 @@
           <div id="<%= category.name.downcase.gsub(' ','_') %>" style="display:none;width:100%;">
 
             <% category.brain_dumps.each do |item| %>
-              <a class="grid__item" href="#">
+              <a class="grid__item" href="#" id="grid__item_<%= item.id %>">
 
                 <h2 class="title title--preview"><%= item.word.humanize %></h2>
                 <div class="loader"></div>
@@ -83,6 +93,9 @@
                   <% else %>
                     <p class="text-muted ital meta-header">There are no team members assigned to this item.</p>
                     <ul class="assignees" data-id="<%= item.id %>"></ul>
+                  <% end %>
+                  <%= link_to 'javascript:;', id:"showBottom" do %>
+                    <i class="fa fa-users"></i>
                   <% end %>
 
                   <div class="actions-bar">
@@ -365,3 +378,34 @@
 
 })();
 </script>
+
+
+<style>
+.outer-therm {
+  margin: 1% 0 0 10%;
+  background-color: #dcdcdc !important;
+  width: 90% !important;
+}
+
+.therm {
+  border-radius: 0px;
+}
+
+.inner-therm {
+  font-size: 12px;
+  background-color: #81C483 !important;
+}
+
+.inner-therm span {
+  padding: 0px !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  left: 4%;
+  color: rgba(0,0,0,0.7);
+  position: absolute;
+  font-weight: 600;
+  margin-top: -0.3em;
+}
+
+
+</style>
