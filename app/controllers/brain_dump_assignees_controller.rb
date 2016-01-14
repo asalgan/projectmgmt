@@ -5,7 +5,8 @@ class BrainDumpAssigneesController < ApplicationController
 
   def create
     @brain_dump_assignment = BrainDumpAssignee.create(brain_dump_id: params[:brain_dump_id], user_id: params[:user_id])
-    render nothing: true
+    @user = User.find(params[:user_id]).name
+    render json: @user.to_json
   end
 
 end

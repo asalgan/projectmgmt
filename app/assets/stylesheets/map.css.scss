@@ -176,12 +176,13 @@
 
     .assignees {
       text-align: center;
+      height: 100%;
 
       li  {
         display: inline-block;
 
         .user-img {
-          @include user-img(40px, 50%, inline-block);
+          @include user-img(45px, 50%, inline-block);
           margin: 0 0.6em;
         }
       }
@@ -910,7 +911,7 @@ button:focus {
   pointer-events: none;
   height: 0; /* Avoid second scroll bar in Chrome! */
   visibility: hidden;
-  z-index: 400;
+  z-index: 100;
   overflow: hidden;
 }
 

@@ -52,7 +52,7 @@
                 <div class="loader"></div>
                 <span class="category"><%= item.assignees.count %> assigned / <%= pluralize(item.brain_dump_notes.count, 'Note') %></span>
                 <div class="meta meta--preview">
-                  <img class="meta__avatar" src="img/authors/1.png" alt="author01" />
+                  <!-- <img class="meta__avatar" src="img/authors/1.png" alt="author01" /> -->
                   <span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span>
                   <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
                 </div>
@@ -90,7 +90,7 @@
                     <p class="text-muted ital meta-header">Team members assigned to this item:</p>
                     <ul class="assignees" data-id="<%= item.id %>">
                       <% item.assignees.each do |assignee| %>
-                        <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
+                        <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img", :data => { :user => assignee.id }  %></span></li>
                       <% end %>
                     </ul>
                   <% else %>
@@ -140,8 +140,6 @@
 
 <% @members = @organization.members %>
 <%= render 'shared/navbar', :collection => @members %>
-
-
 
 
 

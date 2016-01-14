@@ -133,7 +133,11 @@ function assignMembers() {
   containers.push(membersList)
 
   dragula(containers, {
-    copy: true
+    copy: true,
+    revertOnSpill: true,
+    accepts: function (el, target) {
+      return target !== membersList
+    }
   })
   .on('drag', function (el, source) {
     $(".assignees").css({'height':'57px',
@@ -142,6 +146,11 @@ function assignMembers() {
                          'padding':'0.4em',
                          'width': '75%',
                          'margin': '0 auto'
+                        });
+    $(".user-img").css({'border-radius':'50%',
+                        'cursor':'pointer',
+                        'height':'45px',
+                        'width':'45px'
                         })
   }).on('move', function (el, source, handle, sibling) {
     if(!el.hasClass("user-img")) {
@@ -153,29 +162,36 @@ function assignMembers() {
   }).on('cancel', function (el, container, source) {
     $(".assignees").css({'height':'0px',
                          'border':'none',
-                         'background':'none'
+                         'background':'none',
+                         'height': '100%'
                         })
   }).on('copy', function (el, source) {
     return source === membersList
-  }).on('accept', function (el, target) {
-    return target !== membersList
   }).on('drop', function (el, target, source, sibling) {
+    var brain_dump_id = $(target).attr('data-id'),
+        user_id = $(el).find('span').attr('data-id'),
+        assignedCount = $(target).children($(".user-img[data-user='"+user_id+"'")).size();
+
     $(".assignees").css({'height':'100%',
                          'border':'none',
                          'background':'none'
                         });
-    $(target).siblings('p.text-muted').text('Team members assigned to this item:');
-    var brain_dump_id = $(target).attr('data-id');
-    var user_id = $(el).find('span').attr('data-id');
 
-    $.ajax({
-      type: 'POST',
-      url: window.location.origin + '/brain_dump_assignees',
-      data: { brain_dump_id: brain_dump_id, user_id: user_id },
-      success: function() {
-        swal('Awesome!','You assigned a user to this task.','success')
-      }
-    });
+    if(assignedCount > 1) {
+      swal('One sec','This member is already assigned to this task.','warning');
+      $(el).remove();
+      return false
+    } else {
+      $.ajax({
+        type: 'POST',
+        url: window.location.origin + '/brain_dump_assignees',
+        data: { brain_dump_id: brain_dump_id, user_id: user_id },
+        success: function(user) {
+          swal('Awesome!','You assigned ' + user + ' to this task.','success');
+          $(target).siblings('p.text-muted').text('Team members assigned to this item:');
+        }
+      });
+    }
   });
 }
 
