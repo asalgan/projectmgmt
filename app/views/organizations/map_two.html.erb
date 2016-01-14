@@ -81,7 +81,7 @@
                 <!-- <span class="meta__author">Matthew Walters</span> -->
                 <!-- <span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span> -->
                 <!-- <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span> -->
-                <div class="item_content" data-brain-dump-id="<%= item.id %>">
+                <div class="item_content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
 
                   <% if item.assignees.present? %>
                     <p class="text-muted ital meta-header">Team members assigned to this item:</p>
@@ -109,7 +109,7 @@
 
 
 
-                  <ul id="brainDumpNotesList">
+                  <ul id="brainDumpNotesList" class="col-md-12 no-pad">
                     <% if item.brain_dump_notes.present? %>
 
                       <hr>

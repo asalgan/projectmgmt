@@ -941,6 +941,14 @@ button:focus {
   // padding: 60px 60px 80px 60px;
   pointer-events: none;
   font-size: 0.85em;
+  p {
+    max-width: 1200px;
+    margin: 1em auto;
+    text-align: justify;
+  }
+  p:first-of-type {
+    font-size: 1.35em;
+  }
 }
 
 .content__item.content__item--show {
