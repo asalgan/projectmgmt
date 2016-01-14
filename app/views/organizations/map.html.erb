@@ -52,28 +52,28 @@
 
 
 
-    <%# @brain_dump_items.each do |item| %>
-      <!-- <div class="brain_dump_info col-md-8 col-xs-12 no-pad" id="<%#= item.word.downcase.gsub(' ','_')  + "_#{item.id}" %>" style="display:none;"> -->
-<!--
+    <% @brain_dump_items.each do |item| %>
+      <div class="brain_dump_info col-md-8 col-xs-12 no-pad" id="<%= item.word.downcase.gsub(' ','_')  + "_#{item.id}" %>" style="display:none;">
+
         <div class="word-header-container">
-          <span class="circle" data-done="<%#= item.done? %>" data-id="<%#= item.id %>"><i class="fa fa-check"></i></span>
-          <h4 class="word-header"><%#= item.word.humanize %></h4>
-          <span class="assign-due-date">Due: <input type="text" class="datepicker" value="<%#= item.due_date.present? ? item.due_date.strftime('%m/%d/%Y') : 'No due date selected' %>" data-id="<%#= item.id %>"></span>
-        </div> -->
+          <span class="circle" data-done="<%= item.done? %>" data-id="<%= item.id %>"><i class="fa fa-check"></i></span>
+          <h4 class="word-header"><%= item.word.humanize %></h4>
+          <span class="assign-due-date">Due: <input type="text" class="datepicker" value="<%= item.due_date.present? ? item.due_date.strftime('%m/%d/%Y') : 'No due date selected' %>" data-id="<%= item.id %>"></span>
+        </div>
 
-        <!-- <div class="item_content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
+        <div class="content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
 
-          <%# if item.assignees.present? %>
+          <% if item.assignees.present? %>
             <p class="text-muted ital">Team members assigned to this item:</p>
-            <ul class="assignees" data-id="<%#= item.id %>">
-              <%# item.assignees.each do |assignee| %>
-                <li><span data-toggle="tooltip" data-placement="left" title="<%#= assignee.name %>" data-trigger="hover"><%#= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
-              <%# end %>
+            <ul class="assignees" data-id="<%= item.id %>">
+              <% item.assignees.each do |assignee| %>
+                <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img"  %></span></li>
+              <% end %>
             </ul>
-          <%# else %>
+          <% else %>
             <p class="text-muted ital" style="margin-bottom: 5px;">There are no team members assigned to this item.</p>
-            <ul class="assignees" data-id="<%#= item.id %>"></ul>
-          <%# end %>
+            <ul class="assignees" data-id="<%= item.id %>"></ul>
+          <% end %>
 
           <div class="actions-bar">
             <p><b>Add a new:</b></p>
@@ -81,28 +81,28 @@
             <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
           </div>
 
-          <div id="NoteForm" class="hidden"><%#= render 'brain_dump_notes/note_form', word: item %></div>
-          <div id="FileForm" class="hidden"><%#= render 'brain_dump_notes/file_form', word: item %></div>
+          <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: item %></div>
+          <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: item %></div>
 
 
 
           <ul id="brainDumpNotesList" class="col-md-12 no-pad">
-            <%# if item.brain_dump_notes.present? %>
+            <% if item.brain_dump_notes.present? %>
 
               <hr>
 
-              <%# item.brain_dump_notes.order('created_at DESC').each do |note| %>
-                <%#= render 'brain_dump_notes/note', note: note %>
-              <%# end %>
+              <% item.brain_dump_notes.order('created_at DESC').each do |note| %>
+                <%= render 'brain_dump_notes/note', note: note %>
+              <% end %>
 
-            <%# end %>
+            <% end %>
           </ul>
 
-        </div> -->
+        </div><!-- // .content -->
 
-      <!-- </div> -->
+      </div><!-- // .brain_dump_info -->
 
-    <%# end %>
+    <% end %>
 
   </div><!-- // .row -->
 
@@ -113,33 +113,33 @@
 $(document).ready(function() {
   assignMembers();
 
-  // $.each($('.datepicker'), function() {
-  //   $(this).val($(this).attr('value'));
-  // });
+  $.each($('.datepicker'), function() {
+    $(this).val($(this).attr('value'));
+  });
 
 
-  // $('.datepicker').datepicker({
-  //   nextText: ">",
-  //   prevText: "<",
-  //   onSelect: function(dateText, inst) {
-  //     console.log($(this))
-  //     var id = $(this).attr('data-id');
+  $('.datepicker').datepicker({
+    nextText: ">",
+    prevText: "<",
+    onSelect: function(dateText, inst) {
+      console.log($(this))
+      var id = $(this).attr('data-id');
 
-  //     var dateAsObject = $(this).datepicker( 'getDate' );
-  //     console.log(id)
+      var dateAsObject = $(this).datepicker( 'getDate' );
+      console.log(id)
 
-  //     $.ajax({
-  //       url: window.location.origin + "/brain_dumps/" + id + "/update_due_date",
-  //       type: "PUT",
-  //       data: { due_date: dateAsObject },
-  //       format: 'json',
-  //       success:function(data, textStatus, jqXHR) {
-  //       },
-  //       error: function(jqXHR, textStatus, errorThrown){
-  //       }
-  //     });
-  //   }
-  // });
+      $.ajax({
+        url: window.location.origin + "/brain_dumps/" + id + "/update_due_date",
+        type: "PUT",
+        data: { due_date: dateAsObject },
+        format: 'json',
+        success:function(data, textStatus, jqXHR) {
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+        }
+      });
+    }
+  });
 });
 </script>
 

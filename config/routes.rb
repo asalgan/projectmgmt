@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :organizations do
     member do
       get '/map' => 'organizations#map'
-      get '/map_two' => 'organizations#map_two'
     end
   end
 

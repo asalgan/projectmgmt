@@ -115,15 +115,17 @@
 //   }
 // }
 
-.content__item {
+.brain_dump_info {
+  max-height: -webkit-calc(100vh - 51px);
+  max-height: -moz-calc(100vh - 51px);
+  max-height: calc(100vh - 51px);
+  overflow-y: scroll;
 
   .word-header-container {
     background-color: $gray;
     // height: 51px;
     height: 3.3em;
     padding: 10px;
-    z-index: 10;
-    width: 100%;
 
     .word-header {
       margin: 0px;
@@ -143,7 +145,11 @@
       -webkit-border-radius: 50%;
       border-radius: 50%;
       position: absolute;
+<<<<<<< HEAD
       top: 1.2em;
+=======
+      top: 1.1em;
+>>>>>>> parent of c074d34... restyling map page
       left: 10px;
       border: 3px solid #fff;
 
@@ -168,19 +174,16 @@
     }
   }
 
-  .item_content {
 
-    .meta-header {
-      margin: 0.5em;
-      text-align: center;
-    }
+
+  .content {
+    padding: 10px;
+    background-color: $light-background-gray;
 
     .assignees {
-      text-align: center;
-
       .user-img {
         @include user-img(40px, 50%, inline-block);
-        margin: 0 0.6em;
+        margin: 0.6em;
       }
     }
 
@@ -373,6 +376,7 @@
     }
   }
 }
+<<<<<<< HEAD
 
 .image-attachment {
   img {
@@ -1274,3 +1278,5 @@ $viewport_xxl:  $item_width * 6 + $sidebar_width; /* 6 columns */
 }
 
 
+=======
+>>>>>>> parent of c074d34... restyling map page

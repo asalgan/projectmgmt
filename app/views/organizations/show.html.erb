@@ -4,14 +4,13 @@
 
   <div class="col-md-6">
 
-    <%= form_for BrainDump.new, html: { id: "addToBrainDumpForm", method: :post }, remote: true do |f| %>
-      <%= f.text_area :word, :id =>  "newBrainDumpField", placeholder: "Add comma-separated words to your brain dump"  %>
+    <%= bootstrap_form_for BrainDump.new, html: { id: "addToBrainDumpForm", method: :post }, remote: true do |f| %>
+      <%= f.text_area :word, placeholder: "Add comma-separated words to your brain dump", required: true  %>
       <%= f.hidden_field :organization_id, value: @organization.id %>
-      <span class="or-enter"> or press 'Enter'</span>
-      <%= f.submit 'Add', class: "green-btn green-btn-hover", id: "brainDumpSubmit" %>
+      <%= f.submit 'Add' %>
     <% end %>
 
-    <ul class="brain-dump-list col-md-12 no-pad" id="left" data-id="0">
+    <ul class="col-md-12 no-pad" id="left" data-id="0">
       <% @uncategorized_brain_dump.each do |word| %>
         <li data-id="<%= word.id %>"><%= word.word.humanize %></li>
       <% end %>
@@ -51,15 +50,6 @@
   $(document).ready(function(){
     $("#organization_brain_dump").val('');
     brainDump();
-
-
-    document.getElementById('newBrainDumpField').addEventListener('keypress', function(event) {
-      if (event.keyCode == 13) {
-         event.preventDefault();
-        $("#addToBrainDumpForm").submit();
-      }
-    });
-
   });
 
 </script>

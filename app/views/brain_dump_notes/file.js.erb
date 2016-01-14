@@ -1,4 +1,4 @@
-$(".item_content[data-brain-dump-id='<%= @note.brain_dump_id %>'").closest(".brain-dump-items").append("<%= j render partial: 'file', locals: { note: @note } %>");
+$(".content[data-brain-dump-id='<%= @note.brain_dump_id %>'").closest(".brain-dump-items").append("<%= j render partial: 'file', locals: { note: @note } %>");
 $(".new_brain_dump_note")[0].reset();
 $("textarea").val('');
 
