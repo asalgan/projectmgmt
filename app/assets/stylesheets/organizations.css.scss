@@ -1,5 +1,9 @@
 @import "globals";
 
+.brain-dumps-create-page {
+  background-color: $light-background-gray;
+}
+
 .brain-dump-category {
 
   .brain-dump-category-list {
@@ -8,3 +12,34 @@
 }
 
 
+#addToBrainDumpForm {
+  #newBrainDumpField {
+    border: medium none;
+    background: transparent none repeat scroll 0% 0%;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    height: 30px;
+    font-family: 'Patrick Hand';
+    font-size: 1.3em;
+  }
+
+  #brainDumpSubmit {
+    float: right;
+    margin-top: 2%;
+  }
+}
+
+
+.brain-dump-list {
+  font-family: 'Patrick Hand';
+  font-size: 1.3em;
+
+  li {
+  }
+}
+
+.or-enter {
+  float: right;
+  margin: 1.1em;
+  font-size: 0.9em;
+}

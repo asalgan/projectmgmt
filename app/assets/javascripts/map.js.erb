@@ -28,8 +28,8 @@ $(document).ready(function() {
   $(".show-note-form").off('click').on('click', function(e) {
     e.preventDefault();
     var $this = $(this),
-        NoteForm = $this.parents(".content").find("#NoteForm");
-        FileForm = $this.parents(".content").find("#FileForm");
+        NoteForm = $this.parents(".item_content").find("#NoteForm");
+        FileForm = $this.parents(".item_content").find("#FileForm");
 
     $(NoteForm).fadeToggle(400).toggleClass('hidden');
     $(FileForm).addClass('hidden');
@@ -39,8 +39,8 @@ $(document).ready(function() {
   $(".show-file-form").off('click').on('click', function(e) {
     e.preventDefault();
     var $this = $(this),
-        NoteForm = $this.parents(".content").find("#NoteForm");
-        FileForm = $this.parents(".content").find("#FileForm");
+        NoteForm = $this.parents(".item_content").find("#NoteForm");
+        FileForm = $this.parents(".item_content").find("#FileForm");
 
     $(FileForm).fadeToggle(400).toggleClass('hidden');
     $(NoteForm).addClass('hidden');
@@ -52,7 +52,6 @@ $(document).ready(function() {
       $(this).addClass('done');
       $(this).find('.fa-check').css('display','inline');
       var parentElem = $(this).attr('data-id');
-      console.log(parentElem);
       $("#grid__item_"+parentElem).append("<img src='/assets/green_checkmark.png' class='checkmark-img' />");
     });
   });

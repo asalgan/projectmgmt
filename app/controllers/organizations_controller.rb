@@ -1,15 +1,20 @@
 class OrganizationsController < ApplicationController
   before_filter :can_access, only: [:show]
-  before_filter :set_data, only: [:show, :map]
+  before_filter :set_data, only: [:show, :map, :map_two]
 
   def index
   end
 
   def show
+    @page_class = "brain-dumps-create-page"
   end
 
   def map
     # @page_class = "brain-dumps-map"
+  end
+
+  def map_two
+    @page_class = "brain-dumps-map"
   end
 
 
