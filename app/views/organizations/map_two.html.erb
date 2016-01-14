@@ -24,6 +24,9 @@
           <% end %>
         </ul>
       </nav>
+      <%= link_to '#', id: "showBottom" do %>
+        <i class="fa fa-users"></i>
+      <% end %>
     </div>
 
 
@@ -94,9 +97,7 @@
                     <p class="text-muted ital meta-header">There are no team members assigned to this item.</p>
                     <ul class="assignees" data-id="<%= item.id %>"></ul>
                   <% end %>
-                  <%= link_to 'javascript:;', id:"showBottom" do %>
-                    <i class="fa fa-users"></i>
-                  <% end %>
+
 
                   <div class="actions-bar">
                     <p><b>Add a new:</b></p>
@@ -137,6 +138,9 @@
   </div><!-- /grid -->
 </div><!-- /container -->
 
+<% @members = @organization.members %>
+<%= render 'shared/navbar', :collection => @members %>
+
 
 
 
@@ -146,6 +150,8 @@
 
   $(document).ready(function() {
     $("#tabs").tabs();
+
+    assignMembers()
 
     $.each($('.datepicker'), function() {
       $(this).val($(this).attr('value'));

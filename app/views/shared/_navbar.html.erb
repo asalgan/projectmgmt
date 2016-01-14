@@ -4,7 +4,7 @@
 
     <% @members.each do |member| %>
 
-      <li data-member-id="<%= member.id %>">
+      <li data-member-id="<%= member.id %>" style="display:inline-block">
         <span data-toggle="tooltip" data-placement="left" title="<%= member.name %>" data-trigger="hover" data-id="<%= member.id %>"><%= image_tag 'default_avatar.png', class: "user-img" %></span>
       </li>
 

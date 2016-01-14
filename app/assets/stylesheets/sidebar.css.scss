@@ -7,7 +7,6 @@
   #membersList {
 
     li {
-      display: inline-block;
 
       .user-img {
         @include user-img(45px, 50%, inline-block);
