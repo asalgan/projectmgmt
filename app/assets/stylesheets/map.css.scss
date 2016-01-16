@@ -187,9 +187,29 @@
           @include user-img(45px, 50%, inline-block);
           margin: 0 0.6em;
         }
+
+        .showBottom {
+          background: white none repeat scroll 0% 0%;
+          display: inline-block;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          border: 1px solid darken(#f5f5f5, 5%);
+          text-decoration: none;
+          vertical-align: middle;
+          margin: 0px 0.6em !important;
+          @extend %transition;
+
+          .fa-plus {
+            line-height: 45px;
+            margin: 0px;
+          }
+
+          &:hover {
+            border: 1px solid darken($green, 5%);
+          }
+        }
       }
-
-
     }
 
     .actions-bar {
@@ -472,27 +492,6 @@ button:focus {
           text-decoration: none;
         }
       }
-    }
-  }
-
-  #showBottom {
-    background: white none repeat scroll 0% 0%;
-    display: table;
-    margin: 0px auto;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border: 1px solid darken($color_primary, 5%);
-    text-decoration: none;
-    @extend %transition;
-
-    .fa-users {
-      display: table-cell;
-      vertical-align: middle;
-    }
-
-    &:hover {
-      border: 1px solid darken($green, 5%);
     }
   }
 }

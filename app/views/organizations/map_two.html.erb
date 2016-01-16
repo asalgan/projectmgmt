@@ -24,9 +24,6 @@
           <% end %>
         </ul>
       </nav>
-      <%= link_to '#', id: "showBottom" do %>
-        <i class="fa fa-users green-txt-hover"></i>
-      <% end %>
     </div>
 
 
@@ -84,7 +81,11 @@
                 <!-- <span class="meta__author">Matthew Walters</span> -->
                 <!-- <span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span> -->
                 <!-- <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span> -->
-                <div class="item_content col-md-12" data-brain-dump-id="<%= item.id %>">
+
+
+                <div class="col-md-4"></div>
+
+                <div class="item_content col-md-8" data-brain-dump-id="<%= item.id %>">
 
                   <% if item.assignees.present? %>
                     <p class="text-muted ital meta-header">Team members assigned to this item:</p>
@@ -92,11 +93,15 @@
                       <% item.assignees.each do |assignee| %>
                         <li><span data-toggle="tooltip" data-placement="left" title="<%= assignee.name %>" data-trigger="hover"><%= image_tag 'default_avatar.png', class: "user-img", :data => { :user => assignee.id }  %></span></li>
                       <% end %>
+                      <li><%= link_to '#', class: "showBottom" do %><i class="fa fa-plus green-txt-hover"></i><% end %></li>
                     </ul>
                   <% else %>
                     <p class="text-muted ital meta-header">There are no team members assigned to this item.</p>
-                    <ul class="assignees" data-id="<%= item.id %>"></ul>
+                    <ul class="assignees" data-id="<%= item.id %>">
+                      <li><%= link_to '#', class: "showBottom" do %><i class="fa fa-plus green-txt-hover"></i><% end %></li>
+                    </ul>
                   <% end %>
+
 
 
                   <div class="actions-bar">
