@@ -191,7 +191,7 @@
     }
 
     .actions-bar {
-      padding: 5px 0px;
+      padding: 5px 0px 15px;
 
       p {
         @include text-styling($gray, 12px, bold);
@@ -207,7 +207,14 @@
     #FileForm {
       .dropzone {
         border: 2px dashed rgba(0,0,0,0.3);
-        min-height: 100px;
+        height: 7em !important;
+        min-height: none;
+        background: $light-background-gray;
+
+        .dz-message {
+          margin: 0.5em 0px !important;
+          font-family: "Open Sans",sans-serif;
+        }
       }
     }
   }
@@ -253,6 +260,7 @@
   -moz-border-radius: 0;
   box-shadow: 0 1px 3px #252525;
   padding: 0;
+  z-index: 200 !important;
 
   .ui-datepicker-header {
     border: none;
@@ -462,6 +470,27 @@ button:focus {
           text-decoration: none;
         }
       }
+    }
+  }
+
+  #showBottom {
+    background: white none repeat scroll 0% 0%;
+    display: table;
+    margin: 0px auto;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid darken($color_primary, 5%);
+    text-decoration: none;
+    @extend %transition;
+
+    .fa-users {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      border: 1px solid darken($green, 5%);
     }
   }
 }

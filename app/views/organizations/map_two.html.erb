@@ -25,7 +25,7 @@
         </ul>
       </nav>
       <%= link_to '#', id: "showBottom" do %>
-        <i class="fa fa-users"></i>
+        <i class="fa fa-users green-txt-hover"></i>
       <% end %>
     </div>
 
@@ -84,7 +84,7 @@
                 <!-- <span class="meta__author">Matthew Walters</span> -->
                 <!-- <span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span> -->
                 <!-- <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span> -->
-                <div class="item_content col-md-12 no-pad" data-brain-dump-id="<%= item.id %>">
+                <div class="item_content col-md-12" data-brain-dump-id="<%= item.id %>">
 
                   <% if item.assignees.present? %>
                     <p class="text-muted ital meta-header">Team members assigned to this item:</p>
@@ -105,8 +105,8 @@
                     <a href="#" class="blue-btn blue-btn-hover show-file-form">File</a>
                   </div>
 
-                  <div id="NoteForm" class="hidden"><%= render 'brain_dump_notes/note_form', word: item %></div>
-                  <div id="FileForm" class="hidden"><%= render 'brain_dump_notes/file_form', word: item %></div>
+                  <div id="NoteForm" class="col-md-6 no-pad hidden"><%= render 'brain_dump_notes/note_form', word: item %></div>
+                  <div id="FileForm" class="col-md-6 no-pad hidden"><%= render 'brain_dump_notes/file_form', word: item %></div>
 
 
 
@@ -155,26 +155,26 @@
       $(this).val($(this).attr('value'));
     });
 
-    // $('.datepicker').datepicker({
-    //   nextText: ">",
-    //   prevText: "<",
-    //   onSelect: function(dateText, inst) {
-    //     var id = $(this).attr('data-id');
+    $('.datepicker').datepicker({
+      nextText: ">",
+      prevText: "<",
+      onSelect: function(dateText, inst) {
+        var id = $(this).attr('data-id');
 
-    //     var dateAsObject = $(this).datepicker( 'getDate' );
+        var dateAsObject = $(this).datepicker( 'getDate' );
 
-    //     $.ajax({
-    //       url: window.location.origin + "/brain_dumps/" + id + "/update_due_date",
-    //       type: "PUT",
-    //       data: { due_date: dateAsObject },
-    //       format: 'json',
-    //       success:function(data, textStatus, jqXHR) {
-    //       },
-    //       error: function(jqXHR, textStatus, errorThrown){
-    //       }
-    //     });
-    //   }
-    // });
+        $.ajax({
+          url: window.location.origin + "/brain_dumps/" + id + "/update_due_date",
+          type: "PUT",
+          data: { due_date: dateAsObject },
+          format: 'json',
+          success:function(data, textStatus, jqXHR) {
+          },
+          error: function(jqXHR, textStatus, errorThrown){
+          }
+        });
+      }
+    });
   });
 
 
