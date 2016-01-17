@@ -229,8 +229,7 @@
     #FileForm {
       .dropzone {
         border: 2px dashed rgba(0,0,0,0.3);
-        height: 7em !important;
-        min-height: none;
+        height: 6em !important;
         background: $light-background-gray;
 
         .dz-message {
