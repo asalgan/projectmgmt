@@ -133,6 +133,12 @@
       display: inline;
       line-height: 25px;
       padding-left: 30px;
+
+      span {
+        font-size: 0.6em;
+        line-height: 1em;
+        vertical-align: middle;
+      }
     }
 
     .circle {
@@ -164,6 +170,7 @@
     }
 
     .assign-due-date {
+      margin-left: 1em;
       color: white;
     }
   }
@@ -231,6 +238,7 @@
         border: 2px dashed rgba(0,0,0,0.3);
         height: 6em !important;
         background: $light-background-gray;
+        min-height: 0px !important;
 
         .dz-message {
           margin: 0.5em 0px !important;

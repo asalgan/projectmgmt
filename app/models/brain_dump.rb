@@ -12,4 +12,12 @@ class BrainDump < ActiveRecord::Base
     users
   end
 
+  def due_date_in_future?
+    if (due_date.present? && due_date > Date.today)
+      (due_date - Date.today).to_i
+    else
+      "-"
+    end
+  end
+
 end

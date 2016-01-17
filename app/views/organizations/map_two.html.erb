@@ -50,8 +50,8 @@
                 <span class="category"><%= item.assignees.count %> assigned / <%= pluralize(item.brain_dump_notes.count, 'Note') %></span>
                 <div class="meta meta--preview">
                   <!-- <img class="meta__avatar" src="img/authors/1.png" alt="author01" /> -->
-                  <span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span>
-                  <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
+                  <span class="meta__date"><i class="fa fa-calendar-o"></i>Days until deadline: <%= item.due_date_in_future? %></span>
+                  <!-- <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span> -->
                 </div>
               </a>
             <% end %>
@@ -74,7 +74,7 @@
 
                 <div class="word-header-container">
                   <span class="circle" data-done="<%= item.done? %>" data-id="<%= item.id %>"><i class="fa fa-check"></i></span>
-                  <h4 class="word-header"><%= item.word.humanize %></h4>
+                  <h4 class="word-header"><span><%= item.brain_dump_category.name.humanize %> / </span><%= item.word.humanize %></h4>
                   <span class="assign-due-date">Due: <input type="text" class="datepicker" value="<%= item.due_date.present? ? item.due_date.strftime('%m/%d/%Y') : 'No due date selected' %>" data-id="<%= item.id %>"></span>
                 </div>
                 <!-- <img class="meta__avatar" src="img/authors/1.png" alt="author01" /> -->
