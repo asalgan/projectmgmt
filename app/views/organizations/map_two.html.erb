@@ -49,8 +49,10 @@
                 <div class="loader"></div>
                 <span class="category"><%= item.assignees.count %> assigned / <%= pluralize(item.brain_dump_notes.count, 'Note') %></span>
                 <div class="meta meta--preview">
+                  <div class="progress-circle" id="circle_<%= item.id %>"><span class="days-left"><%= item.due_date_in_future? %></span><span class="meta__date">Days until deadline</span></div>
+                  <script>progressCircle('<%= item.due_date_in_future? %>', 'circle_<%= item.id %>')</script>
                   <!-- <img class="meta__avatar" src="img/authors/1.png" alt="author01" /> -->
-                  <span class="meta__date"><i class="fa fa-calendar-o"></i>Days until deadline: <%= item.due_date_in_future? %></span>
+
                   <!-- <span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span> -->
                 </div>
               </a>
@@ -152,6 +154,7 @@
 <script>
 
   $(document).ready(function() {
+
     $("#tabs").tabs();
 
     assignMembers()

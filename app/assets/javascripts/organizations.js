@@ -38,3 +38,15 @@ function checkCompletion(category_id) {
   $(thisItem).removeClass('incomplete').addClass('complete');
   $(thisItem).find('a').css('text-decoration','line-through')
 }
+
+function progressCircle(value, elem) {
+  // defaulting to max days of 50, and calculating percentage of it
+  var percentage = ((50 - parseInt(value)) / 50)
+  $("#"+elem).circleProgress({
+    value: percentage,
+    size: 60,
+    fill: {
+        color: "#7B77C9"
+    }
+  });
+}
